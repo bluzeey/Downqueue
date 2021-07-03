@@ -1,2 +1,2 @@
 # Downqueue
-A github respository for my first business idea. 
+A booking platform for theme parks 
