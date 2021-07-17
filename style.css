@@ -56,17 +56,32 @@ h1{
 }
 .pricing-cards-container{
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .pricing-cards{
     border: 1px solid #000000;
     font-family:"Roboto";
     margin: 0 auto;
+    width: 400px;
+    height:600px;
 
 }
 .pricing-cards h3{
-    font-size: 30px;
+    font-size: 64px;
+    line-height: 75px;
     text-align: center;
+}
+.pricing-cards p{
+    font-size: 16px;
+    line-height: 19px;
+}
+.pricing-cards li{
+    margin:24px 0;
 }
 .pricing-cards button{
     margin:0 auto;
+    font-size:16px;
+    line-height:18.75px;
+    position:relative;
 }
