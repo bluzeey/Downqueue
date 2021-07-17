@@ -85,3 +85,10 @@ h1{
     line-height:18.75px;
     position:relative;
 }
+footer p{
+    text-align: center;
+    background:#1E2833;
+    color:aliceblue;
+    padding-bottom:50px;
+    font-family: "DM Sans";
+}
