@@ -1,2 +1,2 @@
 # Downqueue
-A booking platform for theme parks 
+A platform for streamlining booking/ appointments. Made for professionals with love. 
