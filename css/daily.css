@@ -1,0 +1,60 @@
+body {
+  font-family: "Open Sans";
+  padding: 0 150px;
+}
+h1 {
+  font-size: 36px;
+  margin-bottom: 1.4em;
+  color: #fa8315;
+}
+.whole-schedule {
+  margin: 0 auto;
+  display: flex;
+}
+.setup {
+  font-size: 18px;
+  color: #fa8315;
+  display: grid;
+  grid-template-columns: 3 2;
+  margin-right:50px;
+}
+.setup p{
+    width:90%;
+}
+.grid-item-1 {
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+.grid-item-2 {
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.grid-item-3 {
+  grid-row-start: 2;
+  grid-row-end: 1;
+}
+.grid-item-4 {
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+.grid-item-5 {
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+input {
+  padding: 10px 35px;
+}
+.schedule {
+  background: #2f4858;
+  color: white;
+  margin-bottom: 1.2em;
+  font-size: 18px;
+}
+.schedule button {
+  border: #7158e2 solid 1px;
+  background: white;
+  color: #7158e2;
+  padding: 0.9rem 3.5em;
+  border-radius: 9px;
+  box-shadow: none;
+}
