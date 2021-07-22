@@ -16,10 +16,10 @@ h1 {
   color: #fa8315;
   display: grid;
   grid-template-columns: 3 2;
-  margin-right:50px;
+  margin-right: 50px;
 }
-.setup p{
-    width:90%;
+.setup p {
+  width: 90%;
 }
 .grid-item-1 {
   grid-row-start: 1;
@@ -50,7 +50,7 @@ input {
   margin-bottom: 1.2em;
   font-size: 18px;
 }
-.schedule button {
+.Scheduling button {
   border: #7158e2 solid 1px;
   background: white;
   color: #7158e2;
