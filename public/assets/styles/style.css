@@ -1,15 +1,17 @@
 body {
-  margin: 0 150px;
+  font-family: "Source Sans Pro";
+  margin:0;
 }
 h1 {
-  font-weight: 600;
-  font-size: 72px;
-  font-family: "Open Sans";
-  margin-bottom: 47px;
+  font-weight: 700;
+  font-size: 5.5rem;
+  font-family: "Source Sans Pro";
+  margin-bottom: .3em;
 }
 .topnav {
   display: flex;
   border: 1px solid white;
+  padding-left: 1em;
 }
 .topnav ul {
   float: right;
@@ -17,7 +19,7 @@ h1 {
 .topnav li {
   color: #737373;
   text-decoration: none;
-  font-family: "Open Sans";
+  font-family: "Source Sans Pro";
   font-weight: bold;
   display: inline-block;
   margin: 0 4.5em;
@@ -25,31 +27,28 @@ h1 {
 }
 .topnav .login {
   color: #015de7;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 .topnav img {
   max-height: 100px;
-  float: left;
 }
-.heroimg {
-  display: block;
-}
+
 .heroimg p {
   font-family: "Source Sans Pro";
-  font-size: 36px;
-  line-height: 45px;
+  font-size: 2.25rem;
+  line-height: 2.8rem;
 }
 .heroimg p strong {
   font-weight: 700;
 }
 .heroimg img {
-  float: right;
-  max-width: 700px;
+  max-width: 800px;
+  width:100%
 }
 .heroimg button {
   background: #015de7;
   color: white;
-  font-family: "Open Sans";
+  font-family: "Source Sans Pro";
   border: none;
   padding: 1em;
   font-size: 1.2rem;
@@ -58,18 +57,19 @@ h1 {
 }
 .cards-container {
   display: flex;
-  clear: both;
+  clear:both;
+  margin-bottom: 1em;
 }
 .cards {
   border: 1px solid #000000;
-  font-family: "Inter";
+  font-family: "Source Sans Pro";
   margin: 0 auto;
   max-width: 350px;
   max-height: 400px;
 }
 .cards h3 {
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 1.875rem;
+  line-height: 2.5rem;
   text-align: center;
   margin: 30px 0;
   font-weight: 600;
@@ -79,6 +79,7 @@ h1 {
   line-height: 24px;
   color: #68717a;
   margin: 30px 20px;
+  font-family: "Source Sans Pro";
 }
 .cards-img {
   width: 100%;
@@ -88,19 +89,20 @@ h1 {
   text-align: center;
   font-weight: 600;
   font-size: 60px;
-  font-family: "Open Sans";
+  font-family: "Source Sans Pro";
 }
 .pricing-cards-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 4em;
 }
 .pricing-cards {
   border: 1px solid #000000;
-  font-family: "Roboto";
+  font-family: "Source Sans Pro";
   margin: 0 auto;
-  width: 400px;
-  height: 600px;
+  max-width: 800px;
+  max-height: 600px;
   background: #c2e9f5;
 }
 .pricing-cards h3 {
@@ -130,10 +132,9 @@ h1 {
   padding: 0 10px;
 }
 .pricing-cards button {
-  margin: 0;
   padding: 1.2em;
   width: 100%;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 18.75px;
   color: #2d3748;
   background: #fc998f;
@@ -145,5 +146,11 @@ footer p {
   background: #1e2833;
   color: aliceblue;
   padding-bottom: 50px;
-  font-family: "DM Sans";
+  font-family: "Source Sans Pro";
+  margin-bottom: 0;
+}
+.icons{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0;
 }
