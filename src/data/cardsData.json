@@ -1,16 +1,16 @@
 [{
     "img":"assets/images/schedule.PNG",
     "title":"Make a Schedule",
-    "text":"Set up a schedule for your service , whether it be consulting , therapy , yoga session etc."
+    "text":"Set up a schedule so that others can contact you and vice-versa!"
 },
 {
     "img":"assets/images/cheklist2.PNG",
     "title":"Systemized Bookings",
-    "text": "Use the system for punctual bookings for your service , making your work hasslefree!"
+    "text": "Book the time of others hasslefree and even keep your schedule free!"
 },
 {
     "img":"assets/images/news.PNG",
     "title":"Get the news out !",
-    "text":"Your schedule would be shared on our server helping your potential and current customers."
+    "text":"Your schedule would be shared on our server."
 }
 ]
