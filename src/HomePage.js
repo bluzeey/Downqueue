@@ -9,7 +9,6 @@ function Homepage(){
          <TopNavContainer/>
          <HeroImgContainer/>
          <CardsContainer/>
-         <PricingCardsContainer/>
          <FooterContainer/>
          </>;
 }

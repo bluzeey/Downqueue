@@ -5,7 +5,7 @@ export const Container = styled.section`
     display: flex;
     flex-direction: column;
     min-height: 660px;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 255, 0.75);
     border-radius: 5px;
     box-sizing: border-box;
     width: 100%;
@@ -61,7 +61,7 @@ export const Link = styled(ReachRouterLink)`
 `;
 
 export const Input = styled.input`
-    background: #333;
+    background: white;
     border-radius: 4px;
     border: 0;
     color: #fff;

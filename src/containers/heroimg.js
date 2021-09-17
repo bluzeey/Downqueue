@@ -11,7 +11,7 @@
              </HeroImg.Paragraph>
              <HeroImg.Button>Get Started &#10142;</HeroImg.Button>
              </HeroImg.Inner>
-             <HeroImg.Image src='assets/images/hero-image.png' alt='organize'/>
+             <HeroImg.Image src='assets/images/hero-image.jpg' alt='organize'/>
          </HeroImg>
      )
  }

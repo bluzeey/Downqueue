@@ -4,7 +4,6 @@ export const Container=styled.div`
   display: flex;
   border: 1px solid white;
   padding-left: 1em;
-  background-color: rgba(0,0,0,0.05);
   justify-content:space-around;
   align-items:center;
   @media(max-width:1000px){
@@ -20,7 +19,7 @@ export const List=styled.ul``
 export const ListItem=styled.li`
   text-decoration: none;
   font-family: inherit;
-  font-weight: bold;
+  font-weight: light;
   font-size:1.3rem;
   display: inline-block;
   @media(max-width:1000px){
