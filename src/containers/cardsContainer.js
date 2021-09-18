@@ -8,8 +8,10 @@ export default function CardsContainer(){
         {CardsData.map((Card)=>(
             <Cards.Inner>
             <Cards.Title>{Card.title}</Cards.Title>
+            <div style={{display:"flex",alignItems:"center"}}>
             <Cards.Image className="cards-img" src={Card.img} alt="Schedule"/>
             <Cards.Paragraph>{Card.text}</Cards.Paragraph>
+            </div>
             </Cards.Inner>))}
         </Cards>
     )

@@ -1,12 +1,20 @@
 import React from 'react';
-import { Container, Paragraph,Inner} from './styles/footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {  faFacebookSquare, faTwitterSquare,faInstagramSquare } from '@fortawesome/free-brands-svg-icons';
+import "./styles/footer.css"
 
-export default function Footer({children,...restProps}){
-  return <Container {...restProps}>{children}</Container>
+function FooterContainer(){
+    return(
+        <div className="container">
+        <p className='Paragraph'>
+        Creating an online booking system for businesses who want to expand their global reach.
+        </p>
+        <div className="Inner">
+        <FontAwesomeIcon icon={faFacebookSquare} size="lg"/>
+        <FontAwesomeIcon icon={faTwitterSquare} size="lg"/>
+        <FontAwesomeIcon icon={faInstagramSquare} size="lg"/>
+        </div>
+        </div>
+    )
 }
-Footer.Paragraph= function FooterParagraph({children,...restProps}){
-  return <Paragraph {...restProps}>{children}</Paragraph>
-}
-Footer.Inner=function FooterInner({children,...restProps}){
-  return <Inner {...restProps}>{children}</Inner>
-}
+export default FooterContainer

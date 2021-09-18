@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container=styled.div
 `font-family: "Source Sans Pro";
  display:flex;
- column-gap: 10em;
+ column-gap: 40px;
  align-items:center;
  justify-content:center;
  @media (max-width:1000px) {

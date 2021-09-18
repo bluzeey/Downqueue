@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import  Form  from './components/form';
-import FooterContainer from './containers/footer';
-import TopNavContainer from "./containers/topnav";
 export default function Signup() {
     const [firstName, setFirstName] = useState('');
     const [error, setError] = useState('');
@@ -17,7 +15,6 @@ export default function Signup() {
     }
     return (
             <>
-            <TopNavContainer/>
             <Form>
                 <Form.Title>Sign In</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
@@ -51,7 +48,6 @@ export default function Signup() {
                     </Form.TextSmall>
                 </Form.Base>
             </Form>
-            <FooterContainer/>
             </>
     )
 }

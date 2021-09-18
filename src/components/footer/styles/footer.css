@@ -1,19 +1,16 @@
-import styled from "styled-components";
-
-export const Container=styled.div`
+.Container{
   font-family: Source Sans Pro;
   background: #1e2833;
   display:flex;
   flex-direction:column;
-  `
-
-export const Paragraph=styled.p`
+  
+}
+.Paragraph{
   color: aliceblue;
   margin-bottom: 0;
   text-align:center;
-  `
-
-export const Inner=styled.p`
+}
+.Inner{
   display: flex;
   justify-content: space-around;
   color:#fff;
@@ -21,5 +18,5 @@ export const Inner=styled.p`
     flex-direction:column;
     align-items:center;
   }
-`
+}
 

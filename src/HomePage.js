@@ -1,15 +1,12 @@
-import TopNavContainer from "./containers/topnav";
-import HeroImgContainer from "./containers/heroimg";
-import CardsContainer from "./containers/cardsContainer";
-import PricingCardsContainer from "./containers/pricingCardsContainer";
-import FooterContainer from "./containers/footer";
+import React from "react";
+import TopNav from "./components/topNav/"
+import Footer from "./components/footer/"
+
 
 function Homepage(){
   return <>
-         <TopNavContainer/>
-         <HeroImgContainer/>
-         <CardsContainer/>
-         <FooterContainer/>
+         <TopNav/>
+         <Footer/>
          </>;
 }
 export default Homepage;

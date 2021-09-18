@@ -1,19 +1,14 @@
 import React from 'react';
-import { Container, Image , List , NavLink, ListItem} from './styles/topnav';
-
-export default function TopNav({children,...restProps}){
-    return <Container {...restProps}>{children}</Container>
-}
-
-TopNav.List= function TopNavList({children,...restProps}){
-  return <List {...restProps}>{children}</List>
-}
-TopNav.Image= function TopNavImage({children,...restProps}){
-  return <Image {...restProps}/>
-}
-TopNav.NavLink= function TopNavLink({children,...restProps}){
-  return <NavLink {...restProps}>{children}</NavLink>
-}
-TopNav.ListItem= function TopNavListItem({children,...restProps}){
-  return <ListItem {...restProps}>{children}</ListItem>
+import {NavLink} from 'react-router-dom';
+import './styles/topnav.css';
+export default function TopNav(){
+    return (
+        <div>
+        <img src='/assets/images/logo.png' alt="logo"/>
+        <li><NavLink className='navigation' to="/">HOME</NavLink ></li>
+        <li><NavLink className='navigation' to="/contact">CONTACT</NavLink ></li>
+        <li><NavLink className='navigation' to="/about">ABOUT</NavLink></li>
+        <li><NavLink className='navigation' to="/login">LOGIN</NavLink></li>
+        </div>
+    )
 }
