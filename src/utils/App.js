@@ -4,9 +4,10 @@ import Signin from '../Signin';
 import Homepage from "../HomePage";
 import MyCalendar from '../components/Calendar';
 import Signup from '../Signup';
+import "./globalStyles.css"
 
 function App(){
-  return <div>
+  return <>
          <Switch>
             <Route exact path="/login">
               <Signin/>
@@ -21,6 +22,6 @@ function App(){
               <Signup/>
             </Route>
          </Switch>
-         </div>;
+         </>;
 }
 export default App;

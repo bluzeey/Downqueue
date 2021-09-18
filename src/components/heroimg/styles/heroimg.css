@@ -1,26 +1,27 @@
-.Container{
+.Heroimg-container{
 font-family: "Source Sans Pro";
  display:flex;
  column-gap: 40px;
  align-items:center;
  justify-content:center;
+ margin-bottom: 5em;
  @media (max-width:1000px) {
    flex-direction:column;
  }
 }
 
-.Title{
+.Heroimg-title{
   font-weight: 700;
   font-size: 5.5rem;
   align-self:flex-start;
 }
 
-.Paragraph{
+.Heroimg-paragraph{
   font-size: 2.25rem;
   line-height: 2.8rem;
   align-self:flex-start
 }
-img{
+.Heroimg-img{
   max-width: 600px;
   width:100%;
   border-radius:3px;
@@ -29,7 +30,7 @@ img{
  }
 }
 
-.Button{
+.Heroimg-button{
   background: #015de7;
   color: white;
   border-radius: 4px;
@@ -40,7 +41,7 @@ img{
   font-weight: bold;
   align-self:flex-end;
  }
-.Inner{
+.Heroimg-inner{
     display: flex; 
     flex-direction:column;
     max-height:100vh;

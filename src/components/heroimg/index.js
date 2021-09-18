@@ -3,15 +3,15 @@
 
  export default function HeroImg(){
      return(
-         <div className="Container">
-             <div className="Inner">
-             <h1 className="Title">Meet New People!</h1>
-             <p className="Paragraph">
+         <div className="Heroimg-container">
+             <div className="Heroimg-inner">
+             <h1 className="Heroimg-title">Meet New People!</h1>
+             <p className="Heroimg-paragraph">
                  Organize schedule, appointments to meet new strangers!
              </p>
-             <button className="Button">Get Started &#10142;</button>
+             <button className="Heroimg-button">Get Started &#10142;</button>
              </div>
-             <img src='assets/images/hero-image.jpg' alt='organize'/>
+             <img className="Heroimg-img" src='assets/images/hero-image.jpg' alt='organize'/>
          </div>
      )
  }
