@@ -1,22 +1,17 @@
-import React from "react";
-import {Title,Paragraph,Button,Container,Image,Inner} from "./styles/heroimg"
+ import React from 'react';
+ import './styles/heroimg.css';
 
-
-export default function HeroImg({children,...restProps}){
-  return <Container {...restProps}>{children}</Container>
-}
-HeroImg.Title= function HeroImgTitle({children,...restProps}){
-  return <Title {...restProps}>{children}</Title>
-}
-HeroImg.Paragraph= function HeroImgParagraph({children,...restProps}){
-  return <Paragraph {...restProps}>{children}</Paragraph>
-}
-HeroImg.Image= function HeroImgImage({children,...restProps}){
-  return <Image {...restProps}/>
-}
-HeroImg.Button= function HeroImgButton({children,...restProps}){
-  return <Button {...restProps}>{children}</Button>
-}
-HeroImg.Inner=function HeroImgInner({children,...restProps}){
-  return <Inner {...restProps}>{children}</Inner>
-}
+ export default function HeroImg(){
+     return(
+         <div className="Container">
+             <div className="Inner">
+             <h1 className="Title">Meet New People!</h1>
+             <p className="Paragraph">
+                 Organize schedule, appointments to meet new strangers!
+             </p>
+             <button className="Button">Get Started &#10142;</button>
+             </div>
+             <img src='assets/images/hero-image.jpg' alt='organize'/>
+         </div>
+     )
+ }

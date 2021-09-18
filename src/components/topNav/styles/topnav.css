@@ -1,4 +1,4 @@
-div{
+.Container{
   display: flex;
   border: 1px solid white;
   width: 100%;
@@ -9,14 +9,12 @@ div{
       flex-direction:column;
   }
 }
-img{
+.Image{
   max-height: 100px;
   align-self:center
 }
-ul{
-  width: 100%;
-}
-li{
+
+.listItem{
   text-decoration: none;
   font-family: inherit;
   font-weight: light;

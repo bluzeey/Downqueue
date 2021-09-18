@@ -1,7 +1,5 @@
-import styled from "styled-components";
-
-export const Container=styled.div
-`font-family: "Source Sans Pro";
+.Container{
+font-family: "Source Sans Pro";
  display:flex;
  column-gap: 40px;
  align-items:center;
@@ -9,28 +7,29 @@ export const Container=styled.div
  @media (max-width:1000px) {
    flex-direction:column;
  }
-`
-export const Title =styled.h1`
+}
+
+.Title{
   font-weight: 700;
   font-size: 5.5rem;
   align-self:flex-start;
-  `;
+}
 
-export const Paragraph=styled.p`
+.Paragraph{
   font-size: 2.25rem;
   line-height: 2.8rem;
-  align-self:flex-start`
-
-export const Image=styled.img`
+  align-self:flex-start
+}
+img{
   max-width: 600px;
   width:100%;
   border-radius:3px;
   @media (max-width:1000px) {
    width:80%;
  }
-  `
+}
 
-export const Button=styled.button`
+.Button{
   background: #015de7;
   color: white;
   border-radius: 4px;
@@ -39,12 +38,12 @@ export const Button=styled.button`
   font-family:inherit;
   font-size: 1.2rem;
   font-weight: bold;
-  align-self:flex-end;`
-
-export const Inner=styled.div`
+  align-self:flex-end;
+ }
+.Inner{
     display: flex; 
     flex-direction:column;
     max-height:100vh;
     max-width:600px;
     margin-left:2em;
-    `
+}
