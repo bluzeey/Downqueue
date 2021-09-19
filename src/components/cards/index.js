@@ -1,23 +1,18 @@
 import React from 'react';
-import { Title, Paragraph,Container,Image,Inner } from './styles/cardsContainer';
+import CardsData from "../../data/cardsData.json"
+import "./styles/cards.css"
 
-export default function Cards({children,...restProps}){
-  return <Container {...restProps}>
-          {children}
-         </Container>
-}
-
-Cards.Title = function CardsTitle({children,...restProps}){
-  return <Title {...restProps}>{children}</Title>
-}
-
-Cards.Paragraph = function CardsParagraph({children,...restProps}){
-  return <Paragraph {...restProps}>{children}</Paragraph>
-}
-
-Cards.Image = function CardsImage({children,...restProps}){
-  return <Image {...restProps}/>
-}
-Cards.Inner=function CardsInner({children,...restProps}){
-  return <Inner {...restProps}>{children}</Inner>
+export default function Cards(){
+    return(
+        <div className="cards-Container">
+        {CardsData.map((Card)=>(
+            <div className={`cards-Inner ${Card.style}`}>
+            <h3 className="cards-Title">{Card.title}</h3>
+            <div style={{display:"flex",alignItems:"center"}}>
+            <img className="cards-img" src={Card.img} alt="Schedule"/>
+            <p className="cards-Paragraph">{Card.text}</p>
+            </div>
+            </div>))}
+        </div>
+    )
 }

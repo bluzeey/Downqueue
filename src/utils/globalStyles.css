@@ -1,6 +1,15 @@
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
 body{
     margin:0;
     font-family:"Source Sans Pro";
+    animation: fadein 2s;
 }
 *{
   box-sizing: border-box;  

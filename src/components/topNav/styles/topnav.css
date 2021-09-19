@@ -30,10 +30,12 @@
   padding:.5em 2.5em;
   font-size: 1.5rem;
   text-decoration: none;
+  transition: 0.3s;
 }
   
 .navigation:hover{
       background:#015de7;
-      color:white
+      color:white;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 };
 

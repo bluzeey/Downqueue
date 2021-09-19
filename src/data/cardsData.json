@@ -1,16 +1,20 @@
 [{
     "img":"assets/images/schedule.JPG",
     "title":"Make a Schedule",
-    "text":"Set up a schedule so that others can contact you and vice-versa!"
+    "text":"Set up a schedule so that others can contact you and vice-versa!",
+    "style": "normal"
 },
 {
-    "img":"assets/images/cheklist2.PNG",
+    "img":"assets/images/booking.jpg",
     "title":"Systemized Bookings",
-    "text": "Book the time of others hasslefree and even keep your schedule free!"
+    "text": "Book the time of others hasslefree and even keep your schedule free!",
+    "style": "reverse"
 },
 {
-    "img":"assets/images/news.PNG",
+    "img":"assets/images/share.jpg",
     "title":"Get the news out !",
-    "text":"Your schedule would be shared on our server."
+    "text":"Your schedule would be shared on our server.",
+    "style": "normal"
+
 }
 ]
