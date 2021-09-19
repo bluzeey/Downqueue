@@ -4,7 +4,7 @@ import Signin from '../Signin';
 import Homepage from "../HomePage";
 import MyCalendar from '../components/Calendar';
 import Signup from '../Signup';
-import "./globalStyles.css"
+import "./globalStyles.scss"
 
 function App(){
   return <>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import './styles/topnav.css';
+import './styles/topnav.scss';
 export default function TopNav(){
     return (
         <div className="Container">
