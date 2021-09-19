@@ -13,8 +13,11 @@
   display: flex;
   justify-content: space-around;
   color: #fff;
-  @media (max-width: 700px) {
+  
+}
+@media(max-width: 700px) {
+    .Footer-inner{
     flex-direction: column;
     align-items: center;
+    }
   }
-}
