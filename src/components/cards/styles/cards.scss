@@ -33,7 +33,7 @@
 }
 .cards-Inner {
   padding: 1em;
-  width: 80%;
+  width: 75%;
   margin: 2em auto;
   border-radius: 1%;
   background: rgba(1, 93, 231, 0.7);
@@ -81,19 +81,24 @@
   text-align: right;
 }
 
-@media(max-width: 550px) {
-  .cards-Inner{
-   
+@media(max-width: 650px) {
+  .inner{
+    margin: 0 auto;
   }
   .normal {
-    margin-left: unset;
+    margin-left: 0;
     animation: unset;
   }
   .reverse {
-    margin-right: unset;
+    margin-right: 0;
     animation: unset;
   }
   .cards-Content {
     flex-direction: column;
+  }
+}
+@media(min-width:850px) and (max-width:1000px){
+  .cards-Inner{
+    width: 70%;
   }
 }
