@@ -2,9 +2,9 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom'
 import Signin from '../pages/Signin';
 import Homepage from "../pages/HomePage";
-import MyCalendar from '../components/Calendar';
 import Signup from '../pages/Signup';
 import "./globalStyles.scss"
+import Dashboard from '../pages/dashboard';
 
 function App(){
   return <>
@@ -15,11 +15,11 @@ function App(){
             <Route exact path="/">
               <Homepage/>
             </Route>
-            <Route path="/login/calendar">
-              <MyCalendar/>
-            </Route>
             <Route exact path="/signup">
               <Signup/>
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard/>
             </Route>
          </Switch>
          </>;
