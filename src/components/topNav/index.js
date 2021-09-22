@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import './styles/topnav.scss';
+import './topnav.scss';
 export default function TopNav(){
     return (
         <div className="Container">
@@ -9,6 +9,7 @@ export default function TopNav(){
         <li className="listItem"><NavLink className='navigation' to="/contact">CONTACT</NavLink ></li>
         <li className="listItem"><NavLink className='navigation' to="/about">ABOUT</NavLink></li>
         <li className="listItem"><NavLink className='navigation' to="/login">LOGIN</NavLink></li>
+        <li className="listItem"><NavLink className='navigation' to="/signup">SIGN UP</NavLink></li>
         </div>
     )
 }

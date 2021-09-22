@@ -1,9 +1,9 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
-import Signin from '../Signin';
-import Homepage from "../HomePage";
+import Signin from '../pages/Signin';
+import Homepage from "../pages/HomePage";
 import MyCalendar from '../components/Calendar';
-import Signup from '../Signup';
+import Signup from '../pages/Signup';
 import "./globalStyles.scss"
 
 function App(){

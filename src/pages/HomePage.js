@@ -1,8 +1,8 @@
 import React from "react";
-import TopNav from "./components/topNav/"
-import Footer from "./components/footer/"
-import HeroImg from "./components/heroimg/";
-import Cards from "./components/cards/";
+import TopNav from "../components/topNav"
+import Footer from "../components/footer"
+import HeroImg from "../components/heroimg";
+import Cards from "../components/cards";
 
 
 function Homepage(){

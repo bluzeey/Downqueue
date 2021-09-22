@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import  Form  from './components/form';
-export default function Signin() {
+import  Form  from '../components/form';
+import Footer from '../components/footer';
+import TopNav from '../components/topNav';
+export default function Signup() {
+    const [firstName, setFirstName] = useState('');
     const [error, setError] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
@@ -14,11 +17,23 @@ export default function Signin() {
     }
     return (
             <>
-    
+            <TopNav/>
+            <div style={{
+                padding:'2em',
+                backgroundImage:`url(assets/images/background.jpg)`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            }}>
             <Form>
-                <Form.Title>Sign In</Form.Title>
+                <Form.Title>Sign Up</Form.Title>
                 {error && <Form.Error>{error}</Form.Error>}
                 <Form.Base onSubmit={handleSignin} method="POST">
+                    <Form.Input
+                            placeholder="First Name"
+                            value={firstName}
+                            onChange={({ target }) => setFirstName(target.value)}
+                        />
                     <Form.Input
                         placeholder="Email address"
                         value={emailAddress}
@@ -32,17 +47,19 @@ export default function Signin() {
                         onChange={({ target }) => setPassword(target.value)} 
                     />
                     <Form.Submit disabled={isInvalid} type="submit">
-                        Sign In
+                        Sign Up
                     </Form.Submit>
                     
                     <Form.Text>
-                        New to Netflix? <Form.Link to="/signup">Sign up now.</Form.Link>
+                        Already a User?<Form.Link to="/signin"> Sign in.</Form.Link>
                     </Form.Text>    
                     <Form.TextSmall>
                         This page is protected by Google reCAPTCHA.
                     </Form.TextSmall>
                 </Form.Base>
             </Form>
+            </div>
+            <Footer/>
             </>
     )
 }
