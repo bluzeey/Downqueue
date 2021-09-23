@@ -1,24 +1,23 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
-import Signin from '../pages/Signin';
-import Homepage from "../pages/HomePage";
-import Signup from '../pages/Signup';
+import { Homepage, Dashboard, Signin, Signup } from '../pages/index';
 import "./globalStyles.scss"
-import Dashboard from '../pages/dashboard';
+import * as ROUTES from '../constants/routes';
+
 
 function App(){
   return <>
          <Switch>
-            <Route exact path="/login">
+            <Route exact path={ROUTES.SIGN_IN}>
               <Signin/>
             </Route>
-            <Route exact path="/">
+            <Route exact path={ROUTES.HOME}>
               <Homepage/>
             </Route>
-            <Route exact path="/signup">
+            <Route exact path={ROUTES.SIGN_UP}>
               <Signup/>
             </Route>
-            <Route path="/dashboard">
+            <Route path={ROUTES.DASHBOARD}>
               <Dashboard/>
             </Route>
          </Switch>
