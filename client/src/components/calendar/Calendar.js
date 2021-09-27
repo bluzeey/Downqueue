@@ -1,17 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { createSelector } from 'reselect'
 import FullCalendar, { formatDate } from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS, createEventId } from './event-utils'
-import './style.scss'
+import actionCreators from '../../actions/events'
+import { getHashValues } from '../../utils/utils'
 
-export default class DemoApp extends React.Component {
-
-  state = {
-    weekendsVisible: true,
-    currentEvents: []
-  }
+class Calendar extends React.Component {
 
   render() {
     return (
@@ -25,22 +22,23 @@ export default class DemoApp extends React.Component {
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay'
             }}
-            initialView='timeGridDay'
+            initialView='dayGridMonth'
             editable={true}
             selectable={true}
             selectMirror={true}
             dayMaxEvents={true}
-            weekends={this.state.weekendsVisible}
-            initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+            /* Uncomment this to trigger the problem
+            hiddenDays={[ 0 ]}
+            */
+            weekends={this.props.weekendsVisible}
+            datesSet={this.handleDates}
             select={this.handleDateSelect}
+            events={this.props.events}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
-            eventsSet={this.handleEvents} // called after events are initialized/added/changed/removed
-            /* you can update a remote database when these fire:
-            eventAdd={function(){}}
-            eventChange={function(){}}
-            eventRemove={function(){}}
-            */
+            eventAdd={this.handleEventAdd}
+            eventChange={this.handleEventChange} // called for drag-n-drop/resize
+            eventRemove={this.handleEventRemove}
           />
         </div>
       </div>
@@ -62,55 +60,78 @@ export default class DemoApp extends React.Component {
           <label>
             <input
               type='checkbox'
-              checked={this.state.weekendsVisible}
-              onChange={this.handleWeekendsToggle}
+              checked={this.props.weekendsVisible}
+              onChange={this.props.toggleWeekends}
             ></input>
             toggle weekends
           </label>
         </div>
         <div className='demo-app-sidebar-section'>
-          <h2>All Events ({this.state.currentEvents.length})</h2>
+          <h2>All Events ({this.props.events.length})</h2>
           <ul>
-            {this.state.currentEvents.map(renderSidebarEvent)}
+            {this.props.events.map(renderSidebarEvent)}
           </ul>
         </div>
       </div>
     )
   }
 
-  handleWeekendsToggle = () => {
-    this.setState({
-      weekendsVisible: !this.state.weekendsVisible
-    })
-  }
+  // handlers for user actions
+  // ------------------------------------------------------------------------------------------
 
   handleDateSelect = (selectInfo) => {
-    let title = prompt('Please enter a new title for your event')
     let calendarApi = selectInfo.view.calendar
+    let title = prompt('Please enter a new title for your event')
 
     calendarApi.unselect() // clear date selection
 
     if (title) {
-      calendarApi.addEvent({
-        id: createEventId(),
+      calendarApi.addEvent({ // will render immediately. will call handleEventAdd
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
-      })
+      }, true) // temporary=true, will get overwritten when reducer gives new events
     }
   }
 
   handleEventClick = (clickInfo) => {
     if (window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove()
+      clickInfo.event.remove() // will render immediately. will call handleEventRemove
     }
   }
 
-  handleEvents = (events) => {
-    this.setState({
-      currentEvents: events
-    })
+  // handlers that initiate reads/writes via the 'action' props
+  // ------------------------------------------------------------------------------------------
+
+  handleDates = (rangeInfo) => {
+    console.log(rangeInfo);
+    this.props.requestEvents(rangeInfo.startStr, rangeInfo.endStr)
+      .catch(reportNetworkError)
+  }
+
+  handleEventAdd = (addInfo) => {
+    this.props.createEvent(addInfo.event.toPlainObject())
+      .catch(() => {
+        reportNetworkError()
+        addInfo.revert()
+      })
+  }
+
+  handleEventChange = (changeInfo) => {
+    this.props.updateEvent(changeInfo.event.toPlainObject())
+      .catch(() => {
+        reportNetworkError()
+        changeInfo.revert()
+      })
+  }
+
+  handleEventRemove = (removeInfo) => {
+    this.props.deleteEvent(removeInfo.event.id)
+      .catch(() => {
+        reportNetworkError()
+        removeInfo.revert()
+      })
   }
 
 }
@@ -124,11 +145,31 @@ function renderEventContent(eventInfo) {
   )
 }
 
-function renderSidebarEvent(event) {
+function renderSidebarEvent(plainEventObject) {
   return (
-    <li key={event.id}>
-      <b>{formatDate(event.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
-      <i>{event.title}</i>
+    <li key={plainEventObject.id}>
+      <b>{formatDate(plainEventObject.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>
+      <i>{plainEventObject.title}</i>
     </li>
   )
 }
+
+function reportNetworkError() {
+  alert('This action could not be completed')
+}
+
+function mapStateToProps() {
+  const getEventArray = createSelector(
+    (state) => state.eventsById,
+    getHashValues
+  )
+
+  return (state) => {
+    return {
+      events: getEventArray(state),
+      weekendsVisible: state.weekendsVisible
+    }
+  }
+}
+
+export default connect(mapStateToProps, actionCreators)(Calendar)
