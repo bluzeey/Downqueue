@@ -32,7 +32,7 @@ function eventsById(eventsById = {}, action) {
 
     case 'DELETE_EVENT':
       eventsById = {...eventsById} // copy
-      delete eventsById[action.eventId]
+      delete eventsById[action.plainEventObject.id]
       return eventsById
 
     default:

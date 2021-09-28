@@ -13,16 +13,15 @@ async function getEvents(){
    const data=await api.fetchEvents()
    for(let i=0;i<data.data.length;i++){
      let event={
-       id:i,
+       id:i.toString(),
        title:data.data[i].title,
        start:data.data[i].start,
-       end:data.data[i].end
+       end:data.data[i].end,
+       _id:data.data[i]._id
      }
      eventDb.push(event)
-     eventGuid=data.data.length
+     eventGuid=data.data[data.data.length-1].id+1
    }
-
-   console.log(eventDb)
 }
 
 const DELAY = 200
@@ -79,21 +78,24 @@ export function requestEventUpdate(plainEventObject) {
         eventDb = excludeById(eventDb, plainEventObject.id)
         eventDb.push(plainEventObject)
         resolve(eventDb)
+        console.log(plainEventObject.extendedProps._id)
+        api.updateEvents(plainEventObject,plainEventObject.extendedProps._id)
       }
     }, DELAY)
   })
 }
 
-export function requestEventDelete(eventId) {
-  console.log('[STUB] requesting event delete, id:', eventId)
+export function requestEventDelete(plainEventObject) {
+  console.log('[STUB] requesting event delete, id:', plainEventObject.id)
 
   return new Promise((resolve, reject) => {
     setTimeout(() => { // simulate network delay
       if (simulateErrors) {
         reject(new Error('problem'))
       } else {
-        eventDb = excludeById(eventDb, eventId)
+        eventDb = excludeById(eventDb, plainEventObject.id)
         resolve(eventDb)
+        api.deleteEvent(plainEventObject.extendedProps._id)
       }
     }, DELAY)
   })

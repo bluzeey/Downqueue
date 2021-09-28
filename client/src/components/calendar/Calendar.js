@@ -7,7 +7,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import actionCreators from '../../actions/events'
 import { getHashValues } from '../../utils/utils'
-
+import './style.scss'
 class Calendar extends React.Component {
 
   render() {
@@ -22,7 +22,7 @@ class Calendar extends React.Component {
               center: 'title',
               right: 'dayGridMonth,timeGridWeek,timeGridDay'
             }}
-            initialView='dayGridMonth'
+            initialView='timeGridWeek'
             editable={true}
             selectable={true}
             selectMirror={true}
@@ -127,7 +127,7 @@ class Calendar extends React.Component {
   }
 
   handleEventRemove = (removeInfo) => {
-    this.props.deleteEvent(removeInfo.event.id)
+    this.props.deleteEvent(removeInfo.event.toPlainObject())
       .catch(() => {
         reportNetworkError()
         removeInfo.revert()

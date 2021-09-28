@@ -44,12 +44,12 @@ export default {
     }
   },
 
-  deleteEvent(eventId) {
+  deleteEvent(plainEventObject) {
     return (dispatch) => {
-      return requestEventDelete(eventId).then(() => {
+      return requestEventDelete(plainEventObject).then(() => {
         dispatch({
           type: 'DELETE_EVENT',
-          eventId
+          plainEventObject
         })
       })
     }
