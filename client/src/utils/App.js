@@ -1,6 +1,6 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
-import { Homepage, Dashboard, Signin, Signup } from '../pages/index';
+import { Homepage, Dashboard, Signin, Signup, Profile ,Meet} from '../pages/index';
 import "./globalStyles.scss"
 import * as ROUTES from '../constants/routes';
 
@@ -19,6 +19,12 @@ function App(){
             </Route>
             <Route path={ROUTES.DASHBOARD}>
               <Dashboard/>
+            </Route>
+            <Route path={ROUTES.PROFILE}>
+              <Profile/>
+            </Route>
+            <Route path={ROUTES.MEET}>
+              <Meet/>
             </Route>
          </Switch>
          </>;
