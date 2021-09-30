@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import '../components/profile/styles.scss'
+import  Form  from '../components/form';
 const Profile = () => {
     const [Fullname, setFullName] = useState('')
     const [city,setCity]=useState('')
@@ -7,23 +8,53 @@ const Profile = () => {
     const [emailAddress,setEmailAddress]=useState('')
 
     const [Bio,setBio]=useState('')
+    const [filledForm, setFilledForm]=useState(false)
     const handleSubmit=()=>{}
     return (
         <>
-        <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <h2>Setting up your profile</h2>
-        
-        </form>
+        <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+         <Form.Title style={{fontWeight:'300'}}>Set up your profile</Form.Title>
+          <Form.Input
+                placeholder="First Name"
+                value={Fullname}
+                onChange={({ target }) => setFullName(target.value)}
+                />
+           <Form.Input
+                placeholder="Email address"
+                value={emailAddress}
+                onChange={({ target }) => setEmailAddress(target.value)}
+                />
+             <div style={{display:"flex",margin:'0',padding:'0'}}>
+            <Form.Input
+                style={{width:'50%',marginRight:'1em'}}
+                placeholder="City"
+                value={city}
+                onChange={({ target }) => setCity(target.value)}
+                />
+            <Form.Input
+                style={{width:'50%'}}
+                placeholder="Country"
+                value={country}
+                onChange={({ target }) => setCountry(target.value)}
+                />    
+            </div>
+            <Form.Input
+                placeholder="Country"
+                value={country}
+                onChange={({ target }) => setCountry(target.value)}
+            />
+        </Form>
+        {filledForm &&
         <div className="container">
         <div className="profile-header">
             <div className="profile-img">
                <img src='assets/images/cheklist2.png' width="200" alt="Profile Image"/>
             </div>
             <div className="profile-nav-info">
-            <h3 className="user-name">Bright Code</h3>
+            <h3 className="user-name">Sahil Maheshwari </h3>
             <div className="address">
-                <p id="state" className="state">New York,</p>
-                <span id="country" className="country">USA.</span>
+                <p id="state" className="state">Jaipur</p>
+                <span id="country" className="country">India</span>
             </div>
 
             </div>
@@ -102,7 +133,7 @@ const Profile = () => {
             </div>
             </div>
         </div>
-        </div>
+        </div>}
         </>
     )
 }
