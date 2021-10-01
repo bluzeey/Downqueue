@@ -1,48 +1,58 @@
 import React,{useState} from 'react'
 import '../components/profile/styles.scss'
 import  Form  from '../components/form';
+import Careers from '../data/careers.json'
 const Profile = () => {
-    const [Fullname, setFullName] = useState('')
-    const [city,setCity]=useState('')
-    const [country,setCountry]=useState('')
-    const [emailAddress,setEmailAddress]=useState('')
-
-    const [Bio,setBio]=useState('')
+    const [profileData, setProfileData] = useState({
+        Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:''
+    })
     const [filledForm, setFilledForm]=useState(false)
     const handleSubmit=()=>{}
     return (
         <>
-        <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+        <Form autoComplete="off" noValidate onSubmit={handleSubmit} style={{background:'#e6b800'}}>
          <Form.Title style={{fontWeight:'300'}}>Set up your profile</Form.Title>
           <Form.Input
-                placeholder="First Name"
-                value={Fullname}
-                onChange={({ target }) => setFullName(target.value)}
+                placeholder="Full Name"
+                value={profileData.Fullname}
+                onChange={(e) => setProfileData({...profileData,Fullname:e.target.value})}
                 />
            <Form.Input
                 placeholder="Email address"
-                value={emailAddress}
-                onChange={({ target }) => setEmailAddress(target.value)}
+                value={profileData.emailAddress}
+                onChange={(e) => setProfileData({...profileData,emailAddress:e.target.value})}
                 />
              <div style={{display:"flex",margin:'0',padding:'0'}}>
             <Form.Input
                 style={{width:'50%',marginRight:'1em'}}
                 placeholder="City"
-                value={city}
-                onChange={({ target }) => setCity(target.value)}
+                value={profileData.city}
+                onChange={(e) => setProfileData({...profileData,city:e.target.value})}
                 />
             <Form.Input
                 style={{width:'50%'}}
                 placeholder="Country"
-                value={country}
-                onChange={({ target }) => setCountry(target.value)}
+                value={profileData.country}
+                onChange={(e) => setProfileData({...profileData,country:e.target.value})}
                 />    
             </div>
             <Form.Input
-                placeholder="Country"
-                value={country}
-                onChange={({ target }) => setCountry(target.value)}
+                placeholder="Tell us something about yourself"
+                value={profileData.Bio}
+                onChange={(e) => setProfileData({...profileData,Bio:e.target.value})}
             />
+            <Form.Select
+            style={{color : profileData.Tag?'black':'grey'}}
+            onChange={(e) => {
+                setProfileData({...profileData,Tag:e.target.value});
+            }}>
+            <option style={{color:'gray'}} value="" selected disabled hidden>Select a Field</option>
+            {Careers.map(option=><option key={option.id} value={option.profession}>{option.profession}</option>)}
+            </Form.Select>
+            <Form.Submit type="submit">
+                        Set Up
+            </Form.Submit>
+            {console.log(profileData)}
         </Form>
         {filledForm &&
         <div className="container">

@@ -1,5 +1,6 @@
 import React from 'react';
 import { 
+    Select,
     Container, 
     Error, 
     Base, 
@@ -45,4 +46,7 @@ Form.Input = function FormInput({ children, ...restProps }) {
 
 Form.Submit = function FormSubmit({ children, ...restProps }) {
     return <Submit {...restProps}>{children}</Submit>
+}
+Form.Select = function FormSelect({ children, ...restProps }) {
+    return <Select {...restProps}>{children}</Select>
 }

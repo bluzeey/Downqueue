@@ -30,7 +30,7 @@ export default function Footer(){
                 <div>
                   <h6>Quick Links</h6>
                   <ul className="footer-links">
-                    <li><a href="http://downqueue.com/about/">About Us</a></li>y
+                    <li><a href="http://downqueue.com/about/">About Us</a></li>
                     <li><a href="http://downqueue.com/contribute-at-downqueue/">Contribute</a></li>
                     <li><a href="http://downqueue.com/privacy-policy/">Privacy Policy</a></li>
                     <li><a href="http://downqueue.com/sitemap/">Sitemap</a></li>

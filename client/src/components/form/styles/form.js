@@ -91,3 +91,17 @@ export const Submit = styled.button`
         background:#a7aabc;
     }
 `;
+export const Select=styled.select`
+    background: white;
+    color:gray;
+    border-radius: 4px;
+    border: 0;
+    height: 50px;
+    line-height: 50px;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+    
+    option{
+        color:black
+    }
+`
