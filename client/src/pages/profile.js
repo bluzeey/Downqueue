@@ -1,16 +1,42 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import '../components/profile/styles.scss'
 import  Form  from '../components/form';
 import Careers from '../data/careers.json'
+import { FirebaseContext } from '../context/firebase';
+
 const Profile = () => {
+    const{ firebase }=useContext(FirebaseContext)
     const [profileData, setProfileData] = useState({
         Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:''
     })
     const [filledForm, setFilledForm]=useState(false)
-    const handleSubmit=()=>{}
+    const isInvalid=profileData.Fullname===""
+    const handleSubmit=async(e)=>{
+        e.preventDefault()
+        try{
+        setFilledForm(!filledForm)
+        const db=firebase.firestore();
+        db.settings({
+            timestampsinSnapshots:true
+        });
+        const userRef= await db.collection("Users-data").add({
+            Bio:profileData.Bio,
+            City:profileData.city,
+            Country:profileData.country,
+            Name: profileData.Fullname,
+            Tag:profileData.Tag,
+            emailAddress:profileData.emailAddress
+        })
+        }
+        catch(error){
+          console.log(error)
+        }
+    }
     return (
         <>
-        <Form autoComplete="off" noValidate onSubmit={handleSubmit} style={{background:'#e6b800'}}>
+        {!filledForm&&
+        <Form style={{background:'#e6b800'}}>
+        <Form.Base autoComplete="off" onSubmit={handleSubmit} noValidate method="POST">
          <Form.Title style={{fontWeight:'300'}}>Set up your profile</Form.Title>
           <Form.Input
                 placeholder="Full Name"
@@ -49,11 +75,12 @@ const Profile = () => {
             <option style={{color:'gray'}} value="" selected disabled hidden>Select a Field</option>
             {Careers.map(option=><option key={option.id} value={option.profession}>{option.profession}</option>)}
             </Form.Select>
-            <Form.Submit type="submit">
+            <Form.Submit type="submit" disabled={isInvalid}>
                         Set Up
             </Form.Submit>
-            {console.log(profileData)}
+            </Form.Base>
         </Form>
+}
         {filledForm &&
         <div className="container">
         <div className="profile-header">
@@ -61,10 +88,10 @@ const Profile = () => {
                <img src='assets/images/cheklist2.png' width="200" alt="Profile Image"/>
             </div>
             <div className="profile-nav-info">
-            <h3 className="user-name">Sahil Maheshwari </h3>
+            <h3 className="user-name">{profileData.Fullname}</h3>
             <div className="address">
-                <p id="state" className="state">Jaipur</p>
-                <span id="country" className="country">India</span>
+                <p id="state" className="state">{profileData.city} ,</p>
+                <span id="country" className="country">{profileData.country}</span>
             </div>
 
             </div>
@@ -80,11 +107,11 @@ const Profile = () => {
             <div className="left-side">
             <div className="profile-side">
                 <p className="mobile-no"><i className="fa fa-phone"></i> +23470xxxxx700</p>
-                <p className="user-mail"><i className="fa fa-envelope"></i> Brightisaac80@gmail.com</p>
+                <p className="user-mail"><i className="fa fa-envelope"></i>{profileData.emailAddress}</p>
                 <div className="user-bio">
                 <h3>Bio</h3>
                 <p className="bio">
-                    Lorem ipsum dolor sit amet, hello how consectetur adipisicing elit. Sint consectetur provident magni yohoho consequuntur, voluptatibus ghdfff exercitationem at quis similique. Optio, amet!
+                    {profileData.Bio}
                 </p>
                 </div>
                 <div className="profile-btn">
@@ -114,9 +141,10 @@ const Profile = () => {
 
             <div className="nav">
                 <ul>
-                <li onclick="tabs(0)" className="user-post active">Posts</li>
-                <li onclick="tabs(1)" className="user-review">Reviews</li>
-                <li onclick="tabs(2)" className="user-setting"> Settings</li>
+                {//<li onClick="tabs(0)" className="user-post active">Posts</li>
+                //<li onClick="tabs(1)" className="user-review">Reviews</li>
+                //<li onClick="tabs(2)" className="user-setting"> Settings</li>
+                }
                 </ul>
             </div>
             <div className="profile-body">

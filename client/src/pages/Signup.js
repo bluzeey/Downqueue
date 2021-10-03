@@ -9,6 +9,7 @@ import * as ROUTES from '../constants/routes'
 export default function Signup() {
     const history=useHistory()
     const { firebase } = useContext(FirebaseContext);
+    const [userId,setUserId]=useState('')
     const [firstName, setFirstName] = useState('');
     const [error, setError] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
@@ -21,7 +22,8 @@ export default function Signup() {
         return firebase
         .auth()
         .createUserWithEmailAndPassword(emailAddress, password)
-        .then(()=>{
+        .then((cred)=>{
+            setUserId(cred)
             history.push(ROUTES.DASHBOARD)
         })
         .catch((error) => {

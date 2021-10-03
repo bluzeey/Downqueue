@@ -72,7 +72,6 @@ export function requestEventUpdate(plainEventObject) {
         eventDb = excludeById(eventDb, plainEventObject.id)
         eventDb.push(plainEventObject)
         resolve(eventDb)
-        console.log(plainEventObject.extendedProps._id)
         api.updateEvents(plainEventObject,plainEventObject.extendedProps._id)
       }
     }, DELAY)
