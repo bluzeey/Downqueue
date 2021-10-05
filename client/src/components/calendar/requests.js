@@ -1,16 +1,15 @@
-import { excludeById, getTodayStr } from '../../utils/utils'
-import {useDispatch} from 'react-redux'
+import { excludeById, getHashValues, getTodayStr } from '../../utils/utils'
 import * as api from '../../api'
 /*
 functions that simulate network requests
 */
-
+const user=JSON.parse(window.localStorage.getItem('authUser'))
+console.log(user.uid)
 let todayStr = getTodayStr()
 let eventGuid = 0
 let eventDb = []
-
 async function getEvents(){
-   const data=await api.fetchEvents()
+   const data=await api.fetchEvents(user.uid)
    for(let i=0;i<data.data.length;i++){
      let event={
        id:i.toString(),
@@ -36,7 +35,8 @@ export async function  requestEventsInRange(startStr, endStr) {
       if (simulateErrors) {
         reject(new Error('error'))
       } else {
-        resolve(eventDb) // won't use the start/end, always return whole DB
+        resolve(eventDb)
+         // won't use the start/end, always return whole DB
       }
     }, DELAY)
   })
@@ -54,7 +54,8 @@ export async function requestEventCreate(plainEventObject) {
         let objWithId = {...plainEventObject, id: newEventId}
         eventDb.push(objWithId)
         resolve(newEventId)
-        api.createEvent(objWithId)
+        api.createEvent(objWithId,user.uid)
+
       }
     }, DELAY)
     
@@ -72,7 +73,7 @@ export function requestEventUpdate(plainEventObject) {
         eventDb = excludeById(eventDb, plainEventObject.id)
         eventDb.push(plainEventObject)
         resolve(eventDb)
-        api.updateEvents(plainEventObject,plainEventObject.extendedProps._id)
+        api.updateEvents(plainEventObject,user.uid,plainEventObject.extendedProps._id)
       }
     }, DELAY)
   })
@@ -88,7 +89,7 @@ export function requestEventDelete(plainEventObject) {
       } else {
         eventDb = excludeById(eventDb, plainEventObject.id)
         resolve(eventDb)
-        api.deleteEvent(plainEventObject.extendedProps._id)
+        api.deleteEvent(user.uid,plainEventObject.extendedProps._id)
       }
     }, DELAY)
   })

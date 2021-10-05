@@ -8,9 +8,9 @@ import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction'
 import actionCreators from '../../actions/events'
 import { getHashValues } from '../../utils/utils'
+
 import './style.scss'
 class Calendar extends React.Component {
-
   render() {
     return (
       <div className='demo-app'>

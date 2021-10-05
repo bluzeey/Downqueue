@@ -3,23 +3,32 @@ import '../components/profile/styles.scss'
 import  Form  from '../components/form';
 import Careers from '../data/careers.json'
 import { FirebaseContext } from '../context/firebase';
+import { useAuthListener } from '../hooks';
 
 const Profile = () => {
+    const { user } = useAuthListener();
     const{ firebase }=useContext(FirebaseContext)
     const [profileData, setProfileData] = useState({
         Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:''
     })
-    const [filledForm, setFilledForm]=useState(false)
     const isInvalid=profileData.Fullname===""
+    const db=firebase.firestore();
+    const getUser=db.collection("Users-data").doc(user.uid).get()
+    .then(doc=>setProfileData({
+            Fullname:doc.data().Name,
+            city:doc.data().City,
+            country:doc.data().Country,
+            emailAddress:doc.data().emailAddress,
+            Bio:doc.data().Bio,
+            Tag:doc.data().Tag})
+       )
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try{
-        setFilledForm(!filledForm)
-        const db=firebase.firestore();
         db.settings({
             timestampsinSnapshots:true
         });
-        const userRef= await db.collection("Users-data").add({
+        const userRef= await db.collection("Users-data").doc(user.uid).set({
             Bio:profileData.Bio,
             City:profileData.city,
             Country:profileData.country,
@@ -34,7 +43,7 @@ const Profile = () => {
     }
     return (
         <>
-        {!filledForm&&
+        {!profileData&&
         <Form style={{background:'#e6b800'}}>
         <Form.Base autoComplete="off" onSubmit={handleSubmit} noValidate method="POST">
          <Form.Title style={{fontWeight:'300'}}>Set up your profile</Form.Title>
@@ -79,9 +88,8 @@ const Profile = () => {
                         Set Up
             </Form.Submit>
             </Form.Base>
-        </Form>
-}
-        {filledForm &&
+        </Form>}
+        {profileData &&
         <div className="container">
         <div className="profile-header">
             <div className="profile-img">
@@ -90,8 +98,8 @@ const Profile = () => {
             <div className="profile-nav-info">
             <h3 className="user-name">{profileData.Fullname}</h3>
             <div className="address">
-                <p id="state" className="state">{profileData.city} ,</p>
-                <span id="country" className="country">{profileData.country}</span>
+                <p className="state">{profileData.city} ,</p>
+                <span className="country">{profileData.country}</span>
             </div>
 
             </div>
@@ -132,43 +140,10 @@ const Profile = () => {
                     </div>
                     <span className="no-of-user-rate"><span>123</span>&nbsp;&nbsp;reviews</span>
                 </div>
-
                 </div>
             </div>
-
             </div>
             <div className="right-side">
-
-            <div className="nav">
-                <ul>
-                {//<li onClick="tabs(0)" className="user-post active">Posts</li>
-                //<li onClick="tabs(1)" className="user-review">Reviews</li>
-                //<li onClick="tabs(2)" className="user-setting"> Settings</li>
-                }
-                </ul>
-            </div>
-            <div className="profile-body">
-                <div className="profile-posts tab">
-                <h1>Your Post</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa quia sunt itaque ut libero cupiditate ullam qui velit laborum placeat doloribus, non tempore nisi ratione error rem minima ducimus. Accusamus adipisci quasi at itaque repellat sed
-                    magni eius magnam repellendus. Quidem inventore repudiandae sunt odit. Aliquid facilis fugiat earum ex officia eveniet, nisi, similique ad ullam repudiandae molestias aspernatur qui autem, nam? Cupiditate ut quasi iste, eos perspiciatis maiores
-                    molestiae.</p>
-                </div>
-                <div className="profile-reviews tab">
-                <h1>User reviews</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam pariatur officia, aperiam quidem quasi, tenetur molestiae. Architecto mollitia laborum possimus iste esse. Perferendis tempora consectetur, quae qui nihil voluptas. Maiores debitis
-                    repellendus excepturi quisquam temporibus quam nobis voluptatem, reiciendis distinctio deserunt vitae! Maxime provident, distinctio animi commodi nemo, eveniet fugit porro quos nesciunt quidem a, corporis nisi dolorum minus sit eaque error
-                    sequi ullam. Quidem ut fugiat, praesentium velit aliquam!</p>
-                </div>
-                <div className="profile-settings tab">
-                <div className="account-setting">
-                    <h1>Acount Setting</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit omnis eaque, expedita nostrum, facere libero provident laudantium. Quis, hic doloribus! Laboriosam nemo tempora praesentium. Culpa quo velit omnis, debitis maxime, sequi
-                    animi dolores commodi odio placeat, magnam, cupiditate facilis impedit veniam? Soluta aliquam excepturi illum natus adipisci ipsum quo, voluptatem, nemo, commodi, molestiae doloribus magni et. Cum, saepe enim quam voluptatum vel debitis
-                    nihil, recusandae, omnis officiis tenetur, ullam rerum.</p>
-                </div>
-                </div>
-            </div>
             </div>
         </div>
         </div>}

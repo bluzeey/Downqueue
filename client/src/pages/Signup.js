@@ -23,8 +23,12 @@ export default function Signup() {
         .auth()
         .createUserWithEmailAndPassword(emailAddress, password)
         .then((cred)=>{
-            setUserId(cred)
             history.push(ROUTES.DASHBOARD)
+            console.log(cred)
+            const db=firebase.firestore()
+            const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).set({
+                End:'Sahil'
+            })
         })
         .catch((error) => {
             setFirstName('');

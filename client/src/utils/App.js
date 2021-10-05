@@ -4,7 +4,6 @@ import { Homepage, Dashboard, Signin, Signup, Profile ,Meet} from '../pages/inde
 import "./globalStyles.scss"
 import * as ROUTES from '../constants/routes';
 
-
 function App(){
   return <>
          <Switch>
