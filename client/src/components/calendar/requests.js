@@ -1,26 +1,28 @@
 import { excludeById, getHashValues, getTodayStr } from '../../utils/utils'
 import * as api from '../../api'
+import {firebase} from '../../lib/firebase.prod'
 /*
 functions that simulate network requests
 */
+
 const user=JSON.parse(window.localStorage.getItem('authUser'))
 console.log(user.uid)
 let todayStr = getTodayStr()
 let eventGuid = 0
 let eventDb = []
-async function getEvents(){
-   const data=await api.fetchEvents(user.uid)
-   for(let i=0;i<data.data.length;i++){
-     let event={
-       id:i.toString(),
-       title:data.data[i].title,
-       start:data.data[i].start,
-       end:data.data[i].end,
-       _id:data.data[i]._id
-     }
-     eventDb.push(event)
-     eventGuid=data.data[data.data.length-1].id+1
-   }
+const db=firebase.firestore()
+async function getEvents() {
+    const snapshot = await db.collection("User-events").doc(user.uid).collection("events").get()
+    const collection = {};
+    snapshot.forEach(doc => {
+        collection[doc.id] = doc.data();
+        let event={
+          id:doc.data().id,
+          title:doc.data().Title,
+          start:doc.data().Start,
+          end:doc.data().End}
+        eventDb.push(event)
+    });
 }
 
 const DELAY = 200
@@ -29,14 +31,13 @@ let simulateErrors = false
 
 export async function  requestEventsInRange(startStr, endStr) {
   console.log(`[STUB] requesting events from ${startStr} to ${endStr}`)
-  getEvents()
+  await getEvents()
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (simulateErrors) {
         reject(new Error('error'))
       } else {
         resolve(eventDb)
-         // won't use the start/end, always return whole DB
       }
     }, DELAY)
   })

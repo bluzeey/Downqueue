@@ -26,9 +26,21 @@ export default function Signup() {
             history.push(ROUTES.DASHBOARD)
             console.log(cred)
             const db=firebase.firestore()
-            const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).set({
-                End:'Sahil'
+            db.settings({timestampsinSnapshots:true});
+            const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).collection("events").add({
+                Start:'',
+                End:'',
+                Title:'',
+                id:''
             })
+            const userRef= db.collection("Users-data").doc(cred.user.uid).set({
+                Bio:'',
+                City:'',
+                Country:'',
+                Name: firstName,
+                Tag:'',
+                emailAddress:emailAddress,
+                setProfile:false})
         })
         .catch((error) => {
             setFirstName('');

@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react'
+import React,{useContext, useState,useEffect} from 'react'
 import '../components/profile/styles.scss'
 import  Form  from '../components/form';
 import Careers from '../data/careers.json'
@@ -9,41 +9,39 @@ const Profile = () => {
     const { user } = useAuthListener();
     const{ firebase }=useContext(FirebaseContext)
     const [profileData, setProfileData] = useState({
-        Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:''
+        Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:'',setProfile:false
     })
     const isInvalid=profileData.Fullname===""
-    const db=firebase.firestore();
-    const getUser=db.collection("Users-data").doc(user.uid).get()
+    const db=firebase.firestore();   
+    useEffect(()=>{db.collection("Users-data").doc(user.uid).get()
     .then(doc=>setProfileData({
             Fullname:doc.data().Name,
             city:doc.data().City,
             country:doc.data().Country,
             emailAddress:doc.data().emailAddress,
             Bio:doc.data().Bio,
-            Tag:doc.data().Tag})
-       )
+            Tag:doc.data().Tag,
+            setProfile:doc.data().setProfile})
+       )},[])
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try{
-        db.settings({
-            timestampsinSnapshots:true
-        });
         const userRef= await db.collection("Users-data").doc(user.uid).set({
             Bio:profileData.Bio,
             City:profileData.city,
             Country:profileData.country,
             Name: profileData.Fullname,
             Tag:profileData.Tag,
-            emailAddress:profileData.emailAddress
+            emailAddress:profileData.emailAddress,
+            setProfile:true
         })
-        }
-        catch(error){
+        }catch(error){
           console.log(error)
         }
     }
     return (
         <>
-        {!profileData&&
+        {!profileData.setProfile &&
         <Form style={{background:'#e6b800'}}>
         <Form.Base autoComplete="off" onSubmit={handleSubmit} noValidate method="POST">
          <Form.Title style={{fontWeight:'300'}}>Set up your profile</Form.Title>
@@ -89,7 +87,7 @@ const Profile = () => {
             </Form.Submit>
             </Form.Base>
         </Form>}
-        {profileData &&
+        {profileData.setProfile &&
         <div className="container">
         <div className="profile-header">
             <div className="profile-img">
