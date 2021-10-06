@@ -28,9 +28,9 @@ export default function Signup() {
             const db=firebase.firestore()
             db.settings({timestampsinSnapshots:true});
             const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).collection("events").add({
-                Start:'',
-                End:'',
-                Title:'',
+                start:'',
+                end:'',
+                title:'',
                 id:''
             })
             const userRef= db.collection("Users-data").doc(cred.user.uid).set({

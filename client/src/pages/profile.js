@@ -13,8 +13,8 @@ const Profile = () => {
     })
     const isInvalid=profileData.Fullname===""
     const db=firebase.firestore();   
-    useEffect(()=>{db.collection("Users-data").doc(user.uid).get()
-    .then(doc=>setProfileData({
+    useEffect(()=>{
+       db.collection("Users-data").doc(user.uid).get().then(doc=>setProfileData({
             Fullname:doc.data().Name,
             city:doc.data().City,
             country:doc.data().Country,
@@ -87,7 +87,7 @@ const Profile = () => {
             </Form.Submit>
             </Form.Base>
         </Form>}
-        {profileData.setProfile &&
+        {profileData?.setProfile &&
         <div className="container">
         <div className="profile-header">
             <div className="profile-img">

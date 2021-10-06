@@ -1,12 +1,10 @@
 import { excludeById, getHashValues, getTodayStr } from '../../utils/utils'
-import * as api from '../../api'
 import {firebase} from '../../lib/firebase.prod'
 /*
 functions that simulate network requests
 */
 
 const user=JSON.parse(window.localStorage.getItem('authUser'))
-console.log(user.uid)
 let todayStr = getTodayStr()
 let eventGuid = 0
 let eventDb = []
@@ -18,10 +16,11 @@ async function getEvents() {
         collection[doc.id] = doc.data();
         let event={
           id:doc.data().id,
-          title:doc.data().Title,
-          start:doc.data().Start,
-          end:doc.data().End}
+          title:doc.data().title,
+          start:doc.data().start,
+          end:doc.data().end}
         eventDb.push(event)
+        eventGuid=parseInt(doc.data().id)+1
     });
 }
 
@@ -54,8 +53,8 @@ export async function requestEventCreate(plainEventObject) {
         let newEventId = createEventId()
         let objWithId = {...plainEventObject, id: newEventId}
         eventDb.push(objWithId)
+        db.collection("User-events").doc(user.uid).collection("events").doc(newEventId).set(objWithId)
         resolve(newEventId)
-        api.createEvent(objWithId,user.uid)
 
       }
     }, DELAY)
@@ -72,9 +71,10 @@ export function requestEventUpdate(plainEventObject) {
         reject(new Error('problem'))
       } else {
         eventDb = excludeById(eventDb, plainEventObject.id)
+        let Idstring=String(plainEventObject.id)
         eventDb.push(plainEventObject)
         resolve(eventDb)
-        api.updateEvents(plainEventObject,user.uid,plainEventObject.extendedProps._id)
+        db.collection("User-events").doc(user.uid).collection("events").doc(Idstring).update(plainEventObject)
       }
     }, DELAY)
   })
@@ -89,8 +89,9 @@ export function requestEventDelete(plainEventObject) {
         reject(new Error('problem'))
       } else {
         eventDb = excludeById(eventDb, plainEventObject.id)
+        let Idstring= String(plainEventObject.id)
         resolve(eventDb)
-        api.deleteEvent(user.uid,plainEventObject.extendedProps._id)
+        db.collection("User-events").doc(user.uid).collection("events").doc(Idstring).delete()
       }
     }, DELAY)
   })
