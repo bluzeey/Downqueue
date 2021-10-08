@@ -25,9 +25,12 @@
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "stream-chat": "^4.2.0",
+    "stream-chat-react": "^6.9.1",
     "styled": "^1.0.0",
     "styled-components": "^5.3.1",
     "theming": "^3.3.0",
+    "universal-cookie": "^4.0.4",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
