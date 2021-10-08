@@ -1,6 +1,6 @@
 import React from 'react'
 
-import 
+import {AddChannel} from './AddChannel'
 const TeamChannelList = () => {
     return (
         <div>
