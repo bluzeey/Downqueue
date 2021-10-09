@@ -4,6 +4,7 @@ import Cookies from 'universal-cookie'
 import ChannelSearch from './ChannelSearch'
 import './Chatstyles.css'
 import TeamChannelList from './TeamChannelList'
+import TeamChannelPreview from './TeamChannelPreview'
 
 const SideBar=()=>(
      <div className="channel-list__sidebar">
@@ -34,11 +35,35 @@ const ChannelListContainer = () => {
                 <CompanyHeader/>
                 <ChannelSearch/>
                 <ChannelList
-                   filters={{}}
-                   channelRenderFilterFn={()=>{}}
-                   List={(listProps)=>{
-                        <TeamChannelList {...listProps}/>
-                   }}/>
+                  filters={{}}
+                  channelRenderFilterFn={()=>{}}
+                  List={(listProps)=>(
+                      <TeamChannelList
+                        {...listProps}
+                        type="team"/>
+                        )}
+                  Preview={(previewProps) =>(
+                      <TeamChannelPreview
+                         {...previewProps}
+                         type="team"
+                         />
+                  )}
+                  />
+                  <ChannelList
+                  filters={{}}
+                  channelRenderFilterFn={()=>{}}
+                  List={(listProps)=>(
+                      <TeamChannelList
+                        {...listProps}
+                        type="messaging"/>
+                        )}
+                  Preview={(previewProps) =>(
+                      <TeamChannelPreview
+                         {...previewProps}
+                         type="messaging"
+                         />
+                  )}
+                  />
             </div>
         </>
     )
