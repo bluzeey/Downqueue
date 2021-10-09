@@ -5,9 +5,9 @@ import Cookies from 'universal-cookie';
 import ChannelListContainer from '../components/ChannelListContainer'
 import ChannelContainer from '../components/ChannelContainer'
 
-const apiKey='46pt5uptgfnd'
-const apiSecret='tt4dfghkrxdf4x7p5tk8e44fygkc3zgju93g6k2tx53nwaks4mxtgbubu8ync4c4'
-const appId='1146713'
+const apiKey=`${process.env.REACT_APP_STREAM_API_KEY}`;
+const apiSecret=process.env.REACT_APP_STREAM_API_SECRET
+const appId=process.env.REACT_APP_STREAM_API_APP_ID
 const client= StreamChat.getInstance(apiKey);
 const Meet = () => {
     return (

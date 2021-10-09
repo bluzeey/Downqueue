@@ -3,7 +3,7 @@ import {Switch, Route} from 'react-router-dom'
 import { Homepage, Dashboard, Signin, Signup, Profile ,Meet} from '../pages/index';
 import "./globalStyles.scss"
 import * as ROUTES from '../constants/routes';
-
+require('dotenv').config()
 
 function App(){
   return <>
