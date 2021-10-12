@@ -15,14 +15,12 @@ import {
 import { useAuthListener } from '../hooks';
 import {firebase} from '../lib/firebase.prod'
 import 'stream-chat-react/dist/css/index.css';
-import jwt from 'jsonwebtoken'
+import axios from 'axios'
 
 const getUser=async()=>{
   const db=firebase.firestore();   
   const user=JSON.parse(window.localStorage.getItem('authUser'))
   const doc =await db.collection("Users-data").doc(user.uid).get()
-  const profileData = {Fullname: doc.data().Name}
-  return profileData
 }
 const api_key=process.env.REACT_APP_STREAM_API_KEY
 const api_secret=process.env.REACT_APP_STREAM_API_SECRET
@@ -60,18 +58,19 @@ const Meet = () => {
     const db=firebase.firestore();   
     useEffect(()=>{
       const setData= async()=>{ 
-        const profileData=getUser()
-        const privateKey=process.env.REACT_APP_STREAM_API_SECRET
-        const token =jwt.sign({ id:profileData.Fullname}, privateKey);
-        if(token){
-        const client = StreamChat.getInstance(api_key);
-        if(client){
+        //const db=firebase.firestore();   
+        //const user=await JSON.parse(window.localStorage.getItem('authUser'))
+        //const doc =await db.collection("Users-data").doc(user.uid).get()
+        const profile = {Fullname: 'Sahil'}
+        const token=await axios.post('http://localhost:5000/auth/validate',profile.Fullname)
+        console.log(token)
+        const client=StreamChat.getInstance(api_key)
         await client.connectUser(
         {
-          id: profileData.Fullname,
-          name: profileData.Fullname
-        },token,)}
-       setChatClient(client);}}
+          id: profile.Fullname,
+          name: profile.Fullname
+       },'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiU2FoaWwifQ.G8vuZaoLKW-fOIV6Ns1fnYC85MxtxYbuAedMsQRRWeg',)
+       setChatClient(client);}
        setData()
       },[])
 
