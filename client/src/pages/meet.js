@@ -58,18 +58,18 @@ const Meet = () => {
     const db=firebase.firestore();   
     useEffect(()=>{
       const setData= async()=>{ 
-        //const db=firebase.firestore();   
-        //const user=await JSON.parse(window.localStorage.getItem('authUser'))
-        //const doc =await db.collection("Users-data").doc(user.uid).get()
-        const profile = {Fullname: 'Sahil'}
-        const token=await axios.post('http://localhost:5000/auth/validate',profile.Fullname)
-        console.log(token)
+        const db=firebase.firestore();   
+        const user=await JSON.parse(window.localStorage.getItem('authUser'))
+        const doc =await db.collection("Users-data").doc(user.uid).get()
+        const profile = {Fullname: doc.data().Name}
+        const token=await axios.post('http://localhost:5000/auth/validate',{userId:profile.Fullname})
+        const sessionToken=token.data.token
         const client=StreamChat.getInstance(api_key)
         await client.connectUser(
         {
           id: profile.Fullname,
           name: profile.Fullname
-       },'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiU2FoaWwifQ.G8vuZaoLKW-fOIV6Ns1fnYC85MxtxYbuAedMsQRRWeg',)
+       },sessionToken,)
        setChatClient(client);}
        setData()
       },[])

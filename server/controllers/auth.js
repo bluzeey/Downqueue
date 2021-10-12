@@ -11,12 +11,11 @@ const app_id = process.env.STREAM_APP_ID;
 
 const validate = async (req, res) => {
     try {
-        const  fullName = req.payload;
+        const fullName = req.body;
 
-        const userId = fullName;
-
+        const userId = fullName.userId;
+        console.log(userId)
         const serverClient = connect(api_key, api_secret, app_id);
-
 
         const token = serverClient.createUserToken(userId);
 
