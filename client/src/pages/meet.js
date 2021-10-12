@@ -13,13 +13,20 @@ import {
   Window,
 } from 'stream-chat-react';
 import { useAuthListener } from '../hooks';
-import { FirebaseContext } from '../context/firebase';
+import {firebase} from '../lib/firebase.prod'
 import 'stream-chat-react/dist/css/index.css';
+import jwt from 'jsonwebtoken'
 
-
-server_client = stream_chat.StreamChat(api_key="STREAM_KEY", api_secret="STREAM_SECRET") 
-token = server_client.create_token('john')
-const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiaWN5LWZvZy0yIn0.jkEQ-J1EkpTJv104D_KIC_tWLLdDPCZjDqahfTR6Q5A';
+const getUser=async()=>{
+  const db=firebase.firestore();   
+  const user=JSON.parse(window.localStorage.getItem('authUser'))
+  const doc =await db.collection("Users-data").doc(user.uid).get()
+  const profileData = {Fullname: doc.data().Name}
+  return profileData
+}
+const api_key=process.env.REACT_APP_STREAM_API_KEY
+const api_secret=process.env.REACT_APP_STREAM_API_SECRET
+const app_id=process.env.REACT_APP_STREAM_API_APP_ID
 const filters = { type: 'messaging', members: { $in: ['icy-fog-2'] } };
 const sort = { last_message_at: -1 };
 
@@ -48,43 +55,26 @@ const CustomMessage = () => {
 };
 
 const Meet = () => {
-  const [chatClient, setChatClient] = useState(null);
+    const [chatClient, setChatClient] = useState(null);
     const { user } = useAuthListener();
-    const{ firebase }=useContext(FirebaseContext)
-    const [profileData, setProfileData] = useState({
-        Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:'',setProfile:false
-    })
-    const isInvalid=profileData.Fullname===""
     const db=firebase.firestore();   
     useEffect(()=>{
-       db.collection("Users-data").doc(user.uid).get().then(doc=>setProfileData({
-            Fullname:doc.data().Name,
-            city:doc.data().City,
-            country:doc.data().Country,
-            emailAddress:doc.data().emailAddress,
-            Bio:doc.data().Bio,
-            Tag:doc.data().Tag,
-            setProfile:doc.data().setProfile})
-       )},[])
-
-  useEffect(() => {
-    const initChat = async () => {
-      const client = StreamChat.getInstance('46pt5uptgfnd');
-
-      await client.connectUser(
+      const setData= async()=>{ 
+        const profileData=getUser()
+        const privateKey=process.env.REACT_APP_STREAM_API_SECRET
+        const token =jwt.sign({ id:profileData.Fullname}, privateKey);
+        if(token){
+        const client = StreamChat.getInstance(api_key);
+        if(client){
+        await client.connectUser(
         {
-          id: user.uid,
-          name: profileData.name,
-          image: 'https://getstream.io/random_png/?id=icy-fog-2&name=icy-fog-2',
-        },
-        userToken,
-      );
+          id: profileData.Fullname,
+          name: profileData.Fullname
+        },token,)}
+       setChatClient(client);}}
+       setData()
+      },[])
 
-      setChatClient(client);
-    };
-
-    initChat();
-  }, []);
 
   if (!chatClient) {
     return <LoadingIndicator />;
