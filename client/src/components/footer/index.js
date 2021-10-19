@@ -35,10 +35,10 @@ export default function Footer(){
 
                 <div>
                   <ul className="social-icons">
-                    <li><a className="facebook" href="#"><Facebook/></a></li>
-                    <li><a className="twitter" href="#"><Twitter/></a></li>
-                    <li><a className="dribbble" href="#"><Instagram/></a></li>
-                    <li><a className="linkedin" href="#"><LinkedIn/></a></li>   
+                    <li><a className="facebook" href="#"><Facebook style={{marginTop:'0.4em'}}/></a></li>
+                    <li><a className="twitter" href="#"><Twitter style={{marginTop:'0.4em'}}/></a></li>
+                    <li><a className="dribbble" href="#"><Instagram style={{marginTop:'0.4em'}}/></a></li>
+                    <li><a className="linkedin" href="#"><LinkedIn style={{marginTop:'0.4em'}}/></a></li>   
                   </ul>
                 </div>
               </div>

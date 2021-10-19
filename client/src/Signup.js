@@ -5,8 +5,11 @@ import Footer from './components/footer';
 import TopNav from './components/topNav';
 import { FirebaseContext } from './context/firebase';
 import * as ROUTES from './constants/routes'
+import { TextField,Grid,Typography,Button} from '@mui/material';
+import useStyles from './components/form/styles'
 
 export default function Signup() {
+    const classes=useStyles()
     const history=useHistory()
     const { firebase } = useContext(FirebaseContext);
     const [userId,setUserId]=useState('')
@@ -61,29 +64,33 @@ export default function Signup() {
                 backgroundRepeat: 'no-repeat'
             }}>
             <Form>
-                <Form.Title>Sign Up</Form.Title>
-                {error && <Form.Error>{error}</Form.Error>}
+                <Typography variant="h3" className={classes.title}>Sign Up</Typography>
+                {error && <Typography variant="body2" className={classes.error}>{error}</Typography>}
                 <Form.Base onSubmit={handleSignup} method="POST">
-                    <Form.Input
-                            placeholder="First Name"
+                    <TextField
+                            className={classes.inputField}
+                            label="First Name"
+                            variant="outlined"
                             value={firstName}
                             onChange={({ target }) => setFirstName(target.value)}
                         />
-                    <Form.Input
-                        placeholder="Email address"
+                    <TextField
+                        className={classes.inputField}
+                        label="Email address"
                         value={emailAddress}
                         onChange={({ target }) => setEmailAddress(target.value)}
                     />
-                    <Form.Input
+                    <TextField
+                        className={classes.inputField}
                         type="password"
                         value={password}
                         autoComplete="off"
-                        placeholder="Password"
+                        label="Password"
                         onChange={({ target }) => setPassword(target.value)} 
                     />
-                    <Form.Submit disabled={isInvalid} type="submit">
+                    <Button disabled={isInvalid} type="submit">
                         Sign Up
-                    </Form.Submit>
+                    </Button>
                     
                     <Form.Text>
                         Already a User?<Form.Link to="/signin"> Sign in.</Form.Link>
