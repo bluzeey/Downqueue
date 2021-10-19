@@ -1,6 +1,6 @@
 import React from 'react';
 import CardsData from "../../data/cardsData.json"
-import "./cards.scss"
+import "./cards.css"
 
 export default function Cards(){
     return(

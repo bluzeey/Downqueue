@@ -9,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import actionCreators from '../../actions/events'
 import { getHashValues } from '../../utils/utils'
 
-import './style.scss'
+import './style.css'
 class Calendar extends React.Component {
   render() {
     return (
@@ -24,7 +24,7 @@ class Calendar extends React.Component {
               right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             }}
             initialView='timeGridWeek'
-            editable={true}
+            editable={this.props.editCalendar}
             selectable={true}
             selectMirror={true}
             dayMaxEvents={true}

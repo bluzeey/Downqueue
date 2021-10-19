@@ -1,5 +1,5 @@
  import React from 'react';
- import './heroimg.scss';
+ import './heroimg.css';
 
  export default function HeroImg(){
      return(

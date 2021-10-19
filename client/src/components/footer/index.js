@@ -1,7 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {  faFacebookSquare, faTwitterSquare,faInstagramSquare,faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import "./styles/footer.scss"
+import {Twitter,Facebook,Instagram,LinkedIn} from '@mui/icons-material/';
+import "./footer.css"
 
 export default function Footer(){
     return(
@@ -12,20 +11,6 @@ export default function Footer(){
                   <h6>About</h6>
                   <p className="text-justify">Downqueue is a social network which improves scheduling and meeting with different individuals</p>
                 </div>
-
-                {/*
-                Commenting out if required for the future
-                <div>
-                  <h6>Categories</h6>
-                  <ul className="footer-links">
-                    <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-                    <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-                    <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-                    <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-                    <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-                    <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-                  </ul>
-                </div>*/}
 
                 <div>
                   <h6>Quick Links</h6>
@@ -50,10 +35,10 @@ export default function Footer(){
 
                 <div>
                   <ul className="social-icons">
-                    <li><a className="facebook" href="#"><FontAwesomeIcon icon={faFacebookSquare} size="lg"/></a></li>
-                    <li><a className="twitter" href="#"><FontAwesomeIcon icon={faTwitterSquare} size="lg"/></a></li>
-                    <li><a className="dribbble" href="#"><FontAwesomeIcon icon={faInstagramSquare} size="lg"/></a></li>
-                    <li><a className="linkedin" href="#"><FontAwesomeIcon icon={faLinkedin} size="lg"/></a></li>   
+                    <li><a className="facebook" href="#"><Facebook/></a></li>
+                    <li><a className="twitter" href="#"><Twitter/></a></li>
+                    <li><a className="dribbble" href="#"><Instagram/></a></li>
+                    <li><a className="linkedin" href="#"><LinkedIn/></a></li>   
                   </ul>
                 </div>
               </div>

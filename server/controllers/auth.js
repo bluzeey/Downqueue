@@ -9,18 +9,19 @@ const api_key = process.env.STREAM_API_KEY;
 const api_secret = process.env.STREAM_API_SECRET;
 const app_id = process.env.STREAM_APP_ID;
 
-const validate = async (req, res) => {
+const signup = async (req, res) => {
     try {
-        const fullName = req.body;
+        const { fullName, username, password} = req.body;
 
-        const userId = fullName.userId;
-        console.log(userId)
+        const userId = crypto.randomBytes(16).toString('hex');
+
         const serverClient = connect(api_key, api_secret, app_id);
+
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         const token = serverClient.createUserToken(userId);
 
-        res.status(200).json({token, fullName});
-        return token 
+        res.status(200).json({ token, fullName, username, userId, hashedPassword});
     } catch (error) {
         console.log(error);
 
@@ -53,5 +54,16 @@ const login = async (req, res) => {
         res.status(500).json({ message: error });
     }
 };
-
-module.exports = { validate, login }
+const validate=async(req,res)=>{
+    try{
+        const {userId}= req.body
+        const serverClient = connect(api_key, api_secret, app_id);
+        const client = StreamChat.getInstance(api_key, api_secret);
+        const token = serverClient.createUserToken(userId)
+        res.status(200).json({ token, userId})
+    }catch(error){
+        console.log(error);
+        res.status(500).json({ message: error });
+    }
+}
+module.exports = { signup, login, validate }

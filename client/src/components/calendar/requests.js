@@ -51,6 +51,7 @@ export async function requestEventCreate(plainEventObject) {
         reject(new Error('error'))
       } else {
         let newEventId = createEventId()
+        console.log(newEventId)
         let objWithId = {...plainEventObject, id: newEventId}
         eventDb.push(objWithId)
         db.collection("User-events").doc(user.uid).collection("events").doc(newEventId).set(objWithId)
