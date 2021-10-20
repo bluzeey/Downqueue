@@ -1,11 +1,10 @@
 import React, { useState,useContext} from 'react';
-import { useHistory } from 'react-router';
-import  Form  from './components/form';
+import { useHistory,Link } from 'react-router-dom';
 import Footer from './components/footer';
 import TopNav from './components/topNav';
 import { FirebaseContext } from './context/firebase';
 import * as ROUTES from './constants/routes'
-import { TextField,Grid,Typography,Button} from '@mui/material';
+import { TextField,Grid,Typography,Button,FormControl,Card,Paper} from '@mui/material';
 import useStyles from './components/form/styles'
 
 export default function Signup() {
@@ -30,10 +29,10 @@ export default function Signup() {
             const db=firebase.firestore()
             // db.settings({timestampsinSnapshots:true});
             const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).collection("events").add({
-                start:'',
-                end:'',
-                title:'',
-                id:''
+                start:'2021-10-20T08:00:00+05:30',
+                end:'2021-10-20T10:00:00+05:30',
+                title:'Your first Event',
+                id:'0'
             })
             const userRef= db.collection("Users-data").doc(cred.user.uid).set({
                 Bio:'',
@@ -63,10 +62,10 @@ export default function Signup() {
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat'
             }}>
-            <Form>
+            <Paper className={classes.container}>
                 <Typography variant="h3" className={classes.title}>Sign Up</Typography>
                 {error && <Typography variant="body2" className={classes.error}>{error}</Typography>}
-                <Form.Base onSubmit={handleSignup} method="POST">
+                <form className={classes.form} onSubmit={handleSignup} method="POST">
                     <TextField
                             className={classes.inputField}
                             label="First Name"
@@ -77,29 +76,31 @@ export default function Signup() {
                     <TextField
                         className={classes.inputField}
                         label="Email address"
+                        variant="outlined"
                         value={emailAddress}
                         onChange={({ target }) => setEmailAddress(target.value)}
                     />
                     <TextField
                         className={classes.inputField}
                         type="password"
+                        variant="outlined"
                         value={password}
                         autoComplete="off"
                         label="Password"
                         onChange={({ target }) => setPassword(target.value)} 
                     />
-                    <Button disabled={isInvalid} type="submit">
+                    <Button className={classes.button} disabled={isInvalid} type="submit">
                         Sign Up
                     </Button>
                     
-                    <Form.Text>
-                        Already a User?<Form.Link to="/signin"> Sign in.</Form.Link>
-                    </Form.Text>    
-                    <Form.TextSmall>
+                    <Typography gutterBottom variant="subtitle1" className={classes.text}>
+                        Already a User?<Link to="/signin" className={classes.link}> Sign in.</Link>
+                    </Typography>    
+                    <Typography variant="subtitle2">
                         This page is protected by Google reCAPTCHA.
-                    </Form.TextSmall>
-                </Form.Base>
-            </Form>
+                    </Typography>
+                </form>
+            </Paper>
             </div>
             <Footer/>
             </>

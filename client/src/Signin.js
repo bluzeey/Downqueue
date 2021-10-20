@@ -1,11 +1,11 @@
 import React, { useState,useContext} from 'react';
-import { useHistory } from 'react-router';
-import  Form  from './components/form';
+import { useHistory,Link } from 'react-router-dom';
 import Footer from './components/footer';
 import { FirebaseContext } from './context/firebase';
 import TopNav from './components/topNav';
 import * as ROUTES from './constants/routes'
-
+import { TextField,Grid,Typography,Button,Card,Paper} from '@mui/material';
+import useStyles from './components/form/styles'
 
 export default function Signin() {
     const history = useHistory();
@@ -14,6 +14,7 @@ export default function Signin() {
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
     const isInvalid = password === '' | emailAddress === '';
+    const classes=useStyles()
     
     const handleSignin = (event) => {
     event.preventDefault();
@@ -40,34 +41,36 @@ export default function Signin() {
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat'
             }}>
-            <Form>
-                <Form.Title>Log In</Form.Title>
-                {error && <Form.Error>{error}</Form.Error>}
-                <Form.Base onSubmit={handleSignin} method="POST">
-                    <Form.Input
-                        placeholder="Email address"
+            <Paper className={classes.container}>
+                <Typography variant="h3" className={classes.title}>Log In</Typography>
+                {error && <Typography variant="body2" className={classes.error}>{error}</Typography>}
+                <form className={classes.form} onSubmit={handleSignin} method="POST">
+                    <TextField
+                        className={classes.inputField}
+                        label="Email address"
                         value={emailAddress}
                         onChange={({ target }) => setEmailAddress(target.value)}
                     />
-                    <Form.Input
+                    <TextField
+                        className={classes.inputField}
                         type="password"
                         value={password}
                         autoComplete="off"
-                        placeholder="Password"
+                        label="Password"
                         onChange={({ target }) => setPassword(target.value)} 
                     />
-                    <Form.Submit disabled={isInvalid} type="submit">
+                    <Button className={classes.button} disabled={isInvalid} type="submit">
                         Sign In
-                    </Form.Submit>
+                    </Button>
                     
-                    <Form.Text>
-                        New to Downqueue? <Form.Link to="/signup"> Sign up now.</Form.Link>
-                    </Form.Text>    
-                    <Form.TextSmall>
+                    <Typography gutterBottom variant="subtitle1" className={classes.text}>
+                        New to Downqueue? <Link to="/signup" className={classes.link}> Sign up now.</Link>
+                    </Typography>    
+                    <Typography variant="subtitle2">
                         This page is protected by Google reCAPTCHA.
-                    </Form.TextSmall>
-                </Form.Base>
-            </Form>
+                    </Typography>
+                </form>
+            </Paper>
             </div>
             <Footer/>
             </>

@@ -1,15 +1,16 @@
 import React,{useContext, useState,useEffect} from 'react'
 import './components/profile/styles.css'
-import  Form  from './components/form';
 import Careers from './data/careers.json'
 import { FirebaseContext } from './context/firebase';
 import { useAuthListener } from './hooks';
-
+import { TextField,Grid,Typography,Button,Card,Paper,Select,MenuItem} from '@mui/material';
+import useStyles from './components/form/styles'
 const Profile = ({profileData,setProfileData}) => {
     const { user } = useAuthListener();
     const{ firebase }=useContext(FirebaseContext)
     const isInvalid=profileData.Fullname===""
     const db=firebase.firestore();   
+    const classes=useStyles()
     useEffect(()=>{
        db.collection("Users-data").doc(user.uid).get().then(doc=>setProfileData({
             Fullname:doc.data().Name,
@@ -39,51 +40,56 @@ const Profile = ({profileData,setProfileData}) => {
     return (
         <>
         {!profileData.setProfile &&
-        <Form style={{background:'#e6b800'}}>
-        <Form.Base autoComplete="off" onSubmit={handleSubmit} noValidate method="POST">
-         <Form.Title style={{fontWeight:'300'}}>Set up your profile</Form.Title>
-          <Form.Input
-                placeholder="Full Name"
+        <Paper className={classes.container}>
+        <form className={classes.form} autoComplete="off" onSubmit={handleSubmit} noValidate method="POST">
+         <Typography variant="h3" className={classes.title}>Set up your profile</Typography>
+          <TextField
+                className={classes.inputField}
+                label="Full Name"
                 value={profileData.Fullname}
                 onChange={(e) => setProfileData({...profileData,Fullname:e.target.value})}
                 />
-           <Form.Input
-                placeholder="Email address"
+           <TextField
+                className={classes.inputField}
+                label="Email address"
                 value={profileData.emailAddress}
                 onChange={(e) => setProfileData({...profileData,emailAddress:e.target.value})}
                 />
              <div style={{display:"flex",margin:'0',padding:'0'}}>
-            <Form.Input
+            <TextField
+                className={classes.inputField}
                 style={{width:'50%',marginRight:'1em'}}
-                placeholder="City"
+                label="City"
                 value={profileData.city}
                 onChange={(e) => setProfileData({...profileData,city:e.target.value})}
                 />
-            <Form.Input
+            <TextField
+                className={classes.inputField}
                 style={{width:'50%'}}
-                placeholder="Country"
+                label="Country"
                 value={profileData.country}
                 onChange={(e) => setProfileData({...profileData,country:e.target.value})}
                 />    
             </div>
-            <Form.Input
-                placeholder="Tell us something about yourself"
+            <TextField
+                className={classes.inputField}
+                label="Tell us something about yourself"
                 value={profileData.Bio}
                 onChange={(e) => setProfileData({...profileData,Bio:e.target.value})}
             />
-            <Form.Select
-            style={{color : profileData.Tag?'black':'grey'}}
+            <Select
+            label="Profession"
+            className={classes.inputField}
             onChange={(e) => {
                 setProfileData({...profileData,Tag:e.target.value});
             }}>
-            <option style={{color:'gray'}} value="" selected disabled hidden>Select a Field</option>
-            {Careers.map(option=><option key={option.id} value={option.profession}>{option.profession}</option>)}
-            </Form.Select>
-            <Form.Submit type="submit" disabled={isInvalid}>
-                        Set Up
-            </Form.Submit>
-            </Form.Base>
-        </Form>}
+            {Careers.map(option=><MenuItem key={option.id} value={option.profession}>{option.profession}</MenuItem>)}
+            </Select>
+            <Button className={classes.button} type="submit" disabled={isInvalid}>
+                Set Up
+            </Button>
+            </form>
+        </Paper>}
         {profileData?.setProfile &&
         <div className="container">
         <div className="profile-header">
