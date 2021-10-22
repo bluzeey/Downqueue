@@ -23,7 +23,7 @@ export default makeStyles({
         borderRadius: '4px',
         height: '50px',
         lineHeight: '50px',
-        margin: '25px',
+        margin: '10px',
     },
     form:{
         display: 'flex',
@@ -63,5 +63,8 @@ export default makeStyles({
     link:{
         textDecoration:'none',
         color:'rgba(1, 93, 231, 1)'
+    },
+    select:{
+        margin: '5px',
     }
 })

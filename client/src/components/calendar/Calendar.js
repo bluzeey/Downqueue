@@ -24,7 +24,7 @@ class Calendar extends React.Component {
               right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             }}
             initialView='timeGridWeek'
-            editable={this.props.editCalendar}
+            editable={true}
             selectable={true}
             selectMirror={true}
             dayMaxEvents={true}
@@ -34,7 +34,7 @@ class Calendar extends React.Component {
             weekends={this.props.weekendsVisible}
             datesSet={this.handleDates}
             select={this.handleDateSelect}
-            events={this.props.events}
+            events={this.props.getEvents? this.props.getEvents : this.props.events}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
             eventAdd={this.handleEventAdd}

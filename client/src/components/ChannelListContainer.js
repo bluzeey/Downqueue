@@ -9,10 +9,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 const cookies = new Cookies();
 
-const SideBar = ({ logout }) => (
+const SideBar = ({ logout,dashboard }) => (
     <div className="channel-list__sidebar">
         <div className="channel-list__sidebar__icon1">
-            <div className="icon1__inner">
+            <div className="icon1__inner" onClick={dashboard}>
                 <EventIcon/>
             </div>
         </div>
@@ -53,12 +53,14 @@ const ChannelListContent = ({ isCreating, setIsCreating, setCreateType, setIsEdi
         history.push(ROUTES.HOME)
         window.location.reload();
     }
-
+    const dashboard=()=>{
+        history.push(ROUTES.DASHBOARD)
+    }
     const filters = { members: { $in: [client.userID] } };
 
     return (
         <>
-            <SideBar logout={logout} />
+            <SideBar logout={logout} dashboard={dashboard}/>
             <div className="channel-list__list__wrapper">
                 <CompanyHeader />
                 <ChannelSearch setToggleContainer={setToggleContainer} />

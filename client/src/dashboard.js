@@ -10,7 +10,7 @@ const Dashboard = () => {
     const [searchName,setSearchName]=useState('')
     const [user,setUser]=useState('')
     const [editCalendar,setEditCalendar]=useState(true)
-    const [searchEvents,setSearchEvents]=useState({})
+    const [searchEvents, setSearchEvents] = useState(null)
     const searchResults=async()=>{
         if(searchName){
            let UserId;
@@ -18,22 +18,29 @@ const Dashboard = () => {
            const snapshot=await db.collection("Users-data").where('Name','==',searchName).get().then((querySnapshot)=>querySnapshot.forEach((doc)=>UserId=doc.id))
            const events= await db.collection("User-events").doc(UserId).collection("events").get()
            const collection = {}; 
+           let eventsCollection=[]
            events.forEach(doc => {
                collection[doc.id] = doc.data();
                 let event={
                 id:doc.data().id,
                 title:doc.data().title,
                 start:doc.data().start,
-               end:doc.data().end}
+                end:doc.data().end}
+                eventsCollection.push(event)
            })
-           setSearchEvents(collection)
+           setSearchEvents(eventsCollection)
+           console.log(searchEvents)
+           return <Calendar getEvents={searchEvents}/>
         }else{
             console.log('No person found with that username')
-        }
+        } 
     }
     return (
             <div style={{display:'flex'}}>
-            <Calendar editCalendar={editCalendar} events={searchEvents}/>
+            <div style={{display:'flex',flexDirection:'column'}}>
+            <Calendar/>
+            {searchEvents?<Calendar getEvents={searchEvents}/>:'No user searched currently'}
+            </div>
             <div style={{display:'flex',flexDirection:'column',alignSelf:'center'}}>
             <TextField
                 id="input-with-icon-textfield"

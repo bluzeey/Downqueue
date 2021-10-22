@@ -23,7 +23,7 @@ export default function Signin() {
       .auth()
       .signInWithEmailAndPassword(emailAddress, password)
       .then(()=>{
-            history.push(ROUTES.DASHBOARD)
+          setTimeout(function(){history.push(ROUTES.DASHBOARD)},3000)
         })
       .catch((error) => {
         setEmailAddress('');

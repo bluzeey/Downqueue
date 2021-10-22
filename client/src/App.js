@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Switch, Route} from 'react-router-dom'
 import Homepage from './HomePage'
 import Signup from './Signup';
@@ -13,16 +13,17 @@ function App(){
   const [profileData, setProfileData] = useState({
         Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:'',setProfile:false
     })
+  const [user,setUser]=useState({})
   return <>
          <Switch>
-            <Route exact path={ROUTES.SIGN_IN}>
-              <Signin/>
-            </Route>
             <Route exact path={ROUTES.HOME}>
               <Homepage/>
             </Route>
+            <Route exact path={ROUTES.SIGN_IN}>
+              <Signin setUser={setUser}/>
+            </Route>
             <Route exact path={ROUTES.SIGN_UP}>
-              <Signup/>
+              <Signup setUser={setUser}/>
             </Route>
             <Route path={ROUTES.DASHBOARD}>
               <Dashboard/>

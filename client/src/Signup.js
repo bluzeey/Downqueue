@@ -7,7 +7,7 @@ import * as ROUTES from './constants/routes'
 import { TextField,Grid,Typography,Button,FormControl,Card,Paper} from '@mui/material';
 import useStyles from './components/form/styles'
 
-export default function Signup() {
+export default function Signup(setUser) {
     const classes=useStyles()
     const history=useHistory()
     const { firebase } = useContext(FirebaseContext);
@@ -28,7 +28,7 @@ export default function Signup() {
             console.log(cred)
             const db=firebase.firestore()
             // db.settings({timestampsinSnapshots:true});
-            const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).collection("events").add({
+            const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).collection("events").doc('0').set({
                 start:'2021-10-20T08:00:00+05:30',
                 end:'2021-10-20T10:00:00+05:30',
                 title:'Your first Event',
@@ -42,7 +42,7 @@ export default function Signup() {
                 Tag:'',
                 emailAddress:emailAddress,
                 setProfile:false})
-            history.push(ROUTES.DASHBOARD)
+             setTimeout(function(){history.push(ROUTES.DASHBOARD)},5000)
             })
             .catch((error) => {
             setFirstName('');

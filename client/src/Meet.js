@@ -17,26 +17,18 @@ const apiKey = process.env.REACT_APP_STREAM_API_KEY
 const setToken=async()=>{
     const user=JSON.parse(window.localStorage.getItem('authUser'))
     const URL = 'http://localhost:5000/auth/validate';
+    if(user){
     const { data: { token, userId} } = await axios.post(URL, {
           userId: user.uid});
+    console.log(token)
     cookies.set('token', token);
     cookies.set('userId', userId);
-    const authToken = cookies.get("token");} 
+    const authToken = cookies.get("token");}} 
 setToken()
 const authToken = cookies.get("token");
 
 const client = StreamChat.getInstance(apiKey);
 
-if(authToken) {
-    client.connectUser({
-        id: cookies.get('userId'),
-        name: cookies.get('username'),
-        fullName: cookies.get('fullName'),
-        image: cookies.get('avatarURL'),
-        hashedPassword: cookies.get('hashedPassword'),
-        phoneNumber: cookies.get('phoneNumber'),
-    }, authToken)
-}
 
 
 const Meet = ({profileData,setProfileData}) => {
@@ -45,6 +37,14 @@ const Meet = ({profileData,setProfileData}) => {
     const [isEditing, setIsEditing] = useState(false);
     const {user}=useAuthListener()
     const {firebase}=useContext(FirebaseContext)
+
+    if(authToken,profileData) {
+    client.connectUser({
+        id: cookies.get('userId'),
+        name: profileData.Fullname,
+        fullName: profileData.Fullname
+    }, authToken)
+}
 
     useEffect(()=>{
         const db=firebase.firestore()

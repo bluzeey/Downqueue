@@ -3,7 +3,7 @@ import './components/profile/styles.css'
 import Careers from './data/careers.json'
 import { FirebaseContext } from './context/firebase';
 import { useAuthListener } from './hooks';
-import { TextField,Grid,Typography,Button,Card,Paper,Select,MenuItem} from '@mui/material';
+import { TextField,Typography,Button,InputLabel,Paper,Select,MenuItem,FormControl} from '@mui/material';
 import useStyles from './components/form/styles'
 const Profile = ({profileData,setProfileData}) => {
     const { user } = useAuthListener();
@@ -76,15 +76,18 @@ const Profile = ({profileData,setProfileData}) => {
                 label="Tell us something about yourself"
                 value={profileData.Bio}
                 onChange={(e) => setProfileData({...profileData,Bio:e.target.value})}
-            />
+                />
+            <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="label">Profession</InputLabel>
             <Select
-            label="Profession"
-            className={classes.inputField}
+            style={{margin:'1px'}}
+            labelId="label"
             onChange={(e) => {
                 setProfileData({...profileData,Tag:e.target.value});
             }}>
             {Careers.map(option=><MenuItem key={option.id} value={option.profession}>{option.profession}</MenuItem>)}
             </Select>
+            </FormControl>
             <Button className={classes.button} type="submit" disabled={isInvalid}>
                 Set Up
             </Button>
