@@ -7,11 +7,10 @@ import * as ROUTES from './constants/routes'
 import { TextField,Grid,Typography,Button,FormControl,Card,Paper} from '@mui/material';
 import useStyles from './components/form/styles'
 
-export default function Signup(setUser) {
+export default function Signup(setUserUid) {
     const classes=useStyles()
     const history=useHistory()
     const { firebase } = useContext(FirebaseContext);
-    const [userId,setUserId]=useState('')
     const [firstName, setFirstName] = useState('');
     const [error, setError] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
@@ -25,7 +24,6 @@ export default function Signup(setUser) {
         .auth()
         .createUserWithEmailAndPassword(emailAddress, password)
         .then((cred)=>{
-            console.log(cred)
             const db=firebase.firestore()
             // db.settings({timestampsinSnapshots:true});
             const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).collection("events").doc('0').set({
@@ -42,7 +40,7 @@ export default function Signup(setUser) {
                 Tag:'',
                 emailAddress:emailAddress,
                 setProfile:false})
-             setTimeout(function(){history.push(ROUTES.DASHBOARD)},5000)
+             setTimeout(function(){history.push(ROUTES.PROFILE)},5000)
             })
             .catch((error) => {
             setFirstName('');

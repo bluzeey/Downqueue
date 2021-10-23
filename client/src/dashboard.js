@@ -8,8 +8,6 @@ import { FirebaseContext } from './context/firebase';
 const Dashboard = () => {
     const {firebase}=useContext(FirebaseContext)
     const [searchName,setSearchName]=useState('')
-    const [user,setUser]=useState('')
-    const [editCalendar,setEditCalendar]=useState(true)
     const [searchEvents, setSearchEvents] = useState(null)
     const searchResults=async()=>{
         if(searchName){
@@ -36,12 +34,12 @@ const Dashboard = () => {
         } 
     }
     return (
-            <div style={{display:'flex'}}>
-            <div style={{display:'flex',flexDirection:'column'}}>
+            <div style={{display:'flex',justifyContent:'center',maxHeight:'700px'}}>
+            <div >
             <Calendar/>
-            {searchEvents?<Calendar getEvents={searchEvents}/>:'No user searched currently'}
+            {searchEvents?<div><Calendar getEvents={searchEvents}/></div>:'No user searched currently'}
             </div>
-            <div style={{display:'flex',flexDirection:'column',alignSelf:'center'}}>
+            <div style={{display:'flex',flexDirection:'column'}}>
             <TextField
                 id="input-with-icon-textfield"
                 label="Search a Person"
@@ -58,7 +56,6 @@ const Dashboard = () => {
                 onChange={(e)=>{
                     setSearchName(e.target.value)}}
             />
-            <NavLink to={ROUTES.PROFILE}>Set up your profile </NavLink>
             <NavLink to={ROUTES.MEET}>Have no changes, go to Messaging!</NavLink>
             </div>
             </div>

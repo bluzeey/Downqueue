@@ -57,3 +57,11 @@ b {
   max-height: 550px;
   margin: 0 auto;
 }
+
+.secondary-sidebar{
+  margin-top: -10em;
+}
+.secondary-calendar{
+  max-width:450px;
+  margin:0 auto;
+}

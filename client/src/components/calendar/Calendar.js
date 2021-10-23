@@ -12,6 +12,32 @@ import { getHashValues } from '../../utils/utils'
 import './style.css'
 class Calendar extends React.Component {
   render() {
+    if(this.props.getEvents){
+        return(
+        <div style={{display:'flex',marginRight:'1em'}}>
+        <div style={{fontSize:'14px',position:'relative',maxWidth:'250px',marginLeft:'-2em'}}>
+        <h2>All Events ({this.props.getEvents.length})</h2>
+        <ul>
+        {this.props.getEvents.map(renderSidebarEvent)}
+        </ul>
+        </div>
+        <div className="demo-app-main">
+        <FullCalendar plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin,listPlugin]}
+            headerToolbar={{
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            }}
+            initialView='timeGridWeek'
+            editable={false}
+            selectable={false}
+            selectMirror={true}
+            dayMaxEvents={true}
+            events={this.props.getEvents}/>
+        </div>
+        </div>
+        )
+    }
     return (
       <div className='demo-app'>
         {this.renderSidebar()}

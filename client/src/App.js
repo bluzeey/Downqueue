@@ -13,23 +13,23 @@ function App(){
   const [profileData, setProfileData] = useState({
         Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:'',setProfile:false
     })
-  const [user,setUser]=useState({})
+  const [userUid,setUserUid]=useState()
   return <>
          <Switch>
             <Route exact path={ROUTES.HOME}>
               <Homepage/>
             </Route>
             <Route exact path={ROUTES.SIGN_IN}>
-              <Signin setUser={setUser}/>
+              <Signin setUserUid={setUserUid}/>
             </Route>
             <Route exact path={ROUTES.SIGN_UP}>
-              <Signup setUser={setUser}/>
+              <Signup setUserUid={setUserUid}/>
             </Route>
             <Route path={ROUTES.DASHBOARD}>
               <Dashboard/>
             </Route>
             <Route path={ROUTES.PROFILE}>
-              <Profile profileData={profileData} setProfileData={setProfileData}/>
+              <Profile profileData={profileData} setProfileData={setProfileData} userUid={userUid}/>
             </Route>
             <Route path={ROUTES.MEET}>
               <Meet profileData={profileData} setProfileData={setProfileData}/>
