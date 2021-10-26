@@ -9,39 +9,9 @@ import interactionPlugin from '@fullcalendar/interaction'
 import actionCreators from '../../actions/events'
 import { getHashValues } from '../../utils/utils'
 
-import './style.css'
 class Calendar extends React.Component {
   render() {
-    if(this.props.getEvents){
-        return(
-        <div style={{display:'flex',marginRight:'1em'}}>
-        <div style={{fontSize:'14px',position:'relative',maxWidth:'250px',marginLeft:'-2em'}}>
-        <h2>All Events ({this.props.getEvents.length})</h2>
-        <ul>
-        {this.props.getEvents.map(renderSidebarEvent)}
-        </ul>
-        </div>
-        <div className="demo-app-main">
-        <FullCalendar plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin,listPlugin]}
-            headerToolbar={{
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-            }}
-            initialView='timeGridWeek'
-            editable={false}
-            selectable={false}
-            selectMirror={true}
-            dayMaxEvents={true}
-            events={this.props.getEvents}/>
-        </div>
-        </div>
-        )
-    }
     return (
-      <div className='demo-app'>
-        {this.renderSidebar()}
-        <div className='demo-app-main'>
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin,listPlugin]}
             headerToolbar={{
@@ -60,15 +30,13 @@ class Calendar extends React.Component {
             weekends={this.props.weekendsVisible}
             datesSet={this.handleDates}
             select={this.handleDateSelect}
-            events={this.props.getEvents? this.props.getEvents : this.props.events}
+            events={this.props.events}
             eventContent={renderEventContent} // custom render function
             eventClick={this.handleEventClick}
             eventAdd={this.handleEventAdd}
             eventChange={this.handleEventChange} // called for drag-n-drop/resize
             eventRemove={this.handleEventRemove}
           />
-        </div>
-      </div>
     )
   }
 
@@ -172,7 +140,7 @@ function renderEventContent(eventInfo) {
   )
 }
 
-function renderSidebarEvent(plainEventObject) {
+export function renderSidebarEvent(plainEventObject) {
   return (
     <li key={plainEventObject.id}>
       <b>{formatDate(plainEventObject.start, {year: 'numeric', month: 'short', day: 'numeric'})}</b>

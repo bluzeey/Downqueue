@@ -1,5 +1,4 @@
 import React,{useContext,useEffect} from 'react'
-import './components/profile/styles.css'
 import Careers from './data/careers.json'
 import { FirebaseContext } from './context/firebase';
 import { useAuthListener } from './hooks';
@@ -7,7 +6,7 @@ import { TextField,Typography,Button,InputLabel,Paper,Select,MenuItem,FormContro
 import useStyles from './components/form/styles'
 import { useHistory } from 'react-router';
 import * as ROUTES from './constants/routes'
-import { ConstructionOutlined } from '@mui/icons-material';
+
 const Profile = ({profileData,setProfileData,userUid}) => {
     const { user } = useAuthListener();
     const{ firebase }=useContext(FirebaseContext)

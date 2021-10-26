@@ -7,6 +7,7 @@ import Dashboard from './dashboard'
 import Profile from './profile'
 import Meet from './Meet'
 import * as ROUTES from './constants/routes';
+import './App.css';
 require('dotenv').config()
 
 function App(){
