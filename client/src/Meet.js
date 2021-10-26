@@ -16,7 +16,7 @@ const cookies = new Cookies();
 const apiKey = process.env.REACT_APP_STREAM_API_KEY
 const setToken=async()=>{
     const user=JSON.parse(window.localStorage.getItem('authUser'))
-    const URL = 'http://localhost:5000/auth/validate';
+    const URL = 'https://downqueue.herokuapp.com/auth/validate';
     if(user){
     const { data: { token, userId} } = await axios.post(URL, {
           userId: user.uid});
