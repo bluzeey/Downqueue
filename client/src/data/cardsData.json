@@ -1,12 +1,12 @@
 [{
     "img":"assets/images/schedule.JPG",
-    "title":"Make a Schedule",
+    "title":"Make a Schedule!",
     "text":"Set up a schedule so that others can contact you and vice-versa!",
     "style": "normal"
 },
 {
     "img":"assets/images/booking.jpg",
-    "title":"Systemized Bookings",
+    "title":"Systemized Bookings!",
     "text": "Book the time of others hasslefree and even keep your schedule free!",
     "style": "reverse"
 },

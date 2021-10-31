@@ -1,5 +1,6 @@
-import React,{useState,useEffect} from 'react';
-import {Switch, Route} from 'react-router-dom'
+import React,{useState} from 'react';
+import {Switch, Route} from 'react-router-dom';
+import About from './About';
 import Homepage from './HomePage'
 import Signup from './Signup';
 import Signin from './Signin';
@@ -34,6 +35,9 @@ function App(){
             </Route>
             <Route path={ROUTES.MEET}>
               <Meet profileData={profileData} setProfileData={setProfileData}/>
+            </Route>
+            <Route path={ROUTES.ABOUT}>
+              <About/>
             </Route>
          </Switch>
          </>;
