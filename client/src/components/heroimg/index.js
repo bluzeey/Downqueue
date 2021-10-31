@@ -1,4 +1,5 @@
  import React from 'react';
+ import { NavLink } from 'react-router-dom';
  import './heroimg.css';
 
  export default function HeroImg(){
@@ -9,7 +10,7 @@
              <p className="Heroimg-paragraph">
                  Organize schedule, appointments to meet new strangers!
              </p>
-             <button className="Heroimg-button">Get Started &#10142;</button>
+             <NavLink className="Heroimg-button" to="/signup">Get Started &#10142;</NavLink>
              </div>
              <img className="Heroimg-img" src='assets/images/hero-image.jpg' alt='organize'/>
          </div>

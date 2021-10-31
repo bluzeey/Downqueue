@@ -35,10 +35,9 @@
   padding: 1em;
   width: 75%;
   margin: 2em auto;
+  max-width: 700px;
   border-radius: 1%;
   background: rgba(1, 93, 231, 0.7);
-  max-height: 300px;
-  max-width: 750px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .cards-Title {
@@ -80,25 +79,45 @@
 .reverse h3 {
   text-align: right;
 }
-
-@media(max-width: 650px) {
+.reverse img{
+  order:2;
+}
+@media(max-width: 840px) {
   .inner{
     margin: 0 auto;
   }
   .normal {
-    margin-left: 0;
+    margin: 1em auto;
     animation: unset;
   }
   .reverse {
-    margin-right: 0;
+    margin: 1em auto;
     animation: unset;
   }
   .cards-Content {
     flex-direction: column;
   }
-}
-@media(min-width:850px) and (max-width:1000px){
-  .cards-Inner{
-    width: 70%;
+  .cards-Title{
+    text-align: center;
   }
+  .cards-Paragraph{
+    text-align: center;
+  }
+  .reverse h3 {
+    text-align: center;
+  }
+  .reverse img {
+    order: 0;
+  }
+}
+@media (min-width:840px) and (max-width:1200px) {
+    .normal {
+      margin: 1em auto;
+      animation: unset;
+    }
+
+    .reverse {
+      margin: 1em auto;
+      animation: unset;
+    }
 }

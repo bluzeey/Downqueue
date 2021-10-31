@@ -8,7 +8,7 @@ export default function TopNav(){
         <li className="listItem"><NavLink className='navigation' to="/">HOME</NavLink ></li>
         <li className="listItem"><NavLink className='navigation' to="/about">ABOUT</NavLink></li>
         <li className="listItem"><NavLink className='navigation' to="/signin">LOGIN</NavLink></li>
-        <li className="listItem"><NavLink className='navigation' to="/signup">SIGN UP</NavLink></li>
+        <li className="listItem"><NavLink className='navigation' to="/signup">SIGNUP</NavLink></li>
         </div>
     )
 }
