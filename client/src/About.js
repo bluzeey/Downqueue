@@ -1,9 +1,18 @@
 import TopNav from "./components/topNav"
 import Footer from "./components/footer"
-import { Paper, Typography } from "@mui/material"
+import { TextField,Typography,Button,Paper} from '@mui/material';
 import useStyles from './components/form/styles'
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const About = () => {
+    const classes=useStyles()
+    const [error, setError] = useState('');
+    const [emailAddress, setEmailAddress] = useState('');
+    const [password, setPassword] = useState('');
+    const isInvalid = password === '' | emailAddress === '';
+    const handleSignin = (event) => {
+    event.preventDefault();}
     return (
         <>
             <TopNav/>
@@ -24,6 +33,36 @@ const About = () => {
                     Hi , I am Sahil. I am creating a
                     </Typography>
                 </Paper>
+                <Paper className={classes.container}>
+                <Typography variant="h3" className={classes.title}>Contact Me</Typography>
+                {error && <Typography variant="body2" className={classes.error}>{error}</Typography>}
+                <form className={classes.form} onSubmit={handleSignin} method="POST">
+                    <TextField
+                        className={classes.inputField}
+                        label="Email address"
+                        value={emailAddress}
+                        onChange={({ target }) => setEmailAddress(target.value)}
+                    />
+                    <TextField
+                        className={classes.inputField}
+                        type="password"
+                        value={password}
+                        autoComplete="off"
+                        label="Password"
+                        onChange={({ target }) => setPassword(target.value)} 
+                    />
+                    <Button className={classes.button} disabled={isInvalid} type="submit">
+                        Sign In
+                    </Button>
+                    
+                    <Typography gutterBottom variant="subtitle1" className={classes.text}>
+                        New to Downqueue? <Link to="/signup" className={classes.link}> Sign up now.</Link>
+                    </Typography>    
+                    <Typography variant="subtitle2">
+                        This page is protected by Google reCAPTCHA.
+                    </Typography>
+                </form>
+            </Paper>
             </div>
             <Footer/>
         </>
