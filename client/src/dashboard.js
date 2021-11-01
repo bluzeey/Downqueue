@@ -1,13 +1,12 @@
 import React,{useContext,useState} from 'react'
 import { NavLink} from 'react-router-dom'
 import Calendar from './components/calendar/Calendar';
-import {TextField,InputAdornment} from '@mui/material/';
 import * as ROUTES from './constants/routes';
-import SearchIcon from '@mui/icons-material/Search';
-import {Card,Paper} from '@mui/material'
+import {Search,ArrowForward} from '@mui/icons-material';
+import {Paper,TextField,InputAdornment} from '@mui/material'
 import { renderSidebarEvent } from './components/calendar/Calendar';
 import { FirebaseContext } from './context/firebase';
-import FullCalendar, { formatDate } from '@fullcalendar/react'
+import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
@@ -48,7 +47,8 @@ const Dashboard = () => {
                 <li>Select dates and you will be prompted to create a new event</li>
                 <li>Drag, drop, and resize events</li>
                 <li>Click an event to delete it</li>
-                <li>Search events of your friends and sync up or go to Messaging to meet new people.</li>
+                <li>Search events of your friends and sync up.</li>
+                <li>Go to Messaging to meet new people.</li>
                 </ul>
                 {searchEvents &&
                 <>
@@ -83,7 +83,7 @@ const Dashboard = () => {
                 InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">
-                    <SearchIcon />
+                    <Search/>
                     </InputAdornment>
                 ),
                 }}
@@ -93,7 +93,7 @@ const Dashboard = () => {
                 onChange={(e)=>{
                     setSearchName(e.target.value)}}
             />
-            <NavLink className={classes.btn} to={ROUTES.MEET}>Messaging &#10142;</NavLink>
+            <NavLink className={classes.btn} to={ROUTES.MEET}>Messaging<ArrowForward className={classes.icon} fontSize="small"/></NavLink>
             </Paper>
             </div>
     )

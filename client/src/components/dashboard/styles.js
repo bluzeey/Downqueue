@@ -6,35 +6,56 @@ export default makeStyles({
        background:'lightgray',
        justifyContent:'space-around',
        height:'100vh',
+       '@media (max-width: 810px)' : {
+           flexDirection:'column',
+           height:'120vh',
+         },
+        
    },
    instructions:{
        display:'flex',
        padding:'1em',
        flexDirection:'column',
        alignSelf:'center',
-       maxWidth:'300px',
-       margin:'0 2em'
+       margin:'0 1em',
+       maxWidth:'400px',
+       '@media (max-width: 810px)' : {
+         margin:'unset',
+         marginBottom:'20px',
+         width:'85%'
+        }
    },
    calenders:{
        display:'flex',
-       flexDirection:'column',
-       height:'80%',
+       padding:'1em',
        alignSelf:'center',
-       justifyContent: 'space-between'
+       justifyContent: 'space-between',
+       overflow:'scroll',
+       '@media (max-width: 810px)' : {
+           margin:'unset',
+           width:'85%'
+        }
    },
    searchBar:{
        display:'flex',
        flexDirection:'column',
        alignSelf:'center',
        padding:'1em',
-       margin:'0 2em'
+       margin:'0 1em',
+       '@media (max-width: 810px)' : {
+         margin:'unset',
+         marginTop:'1em',
+         width:'85%',
+         maxWidth:'300px'
+        }
    },
    btn:{
         borderRadius: '4px',
         fontSize: '16px',
         fontWeight: 'bold',
-        margin: '15px',
+        marginTop: '15px',
         border: '0',
+        padding:'1em',
         color: 'white',
         cursor: 'pointer',
         background:'rgba(1, 93, 231, 1)',
@@ -46,5 +67,8 @@ export default makeStyles({
             transform:'scale(1.2)',
             transition:'transform .5s'
         }
+   },
+   icon:{
+       transform: 'translateY(20%)'
    }
 })

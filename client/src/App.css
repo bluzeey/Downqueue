@@ -27,7 +27,12 @@
   #root {
     height: 100%;
   }
-  
+  /* Full Calendar CSS */
+  .fc{
+    min-height: 600px;
+    min-width: 300px;
+  }
+  /* Stream Chat Application CSS */
   .auth__form-container {
     min-height: 100vh;
     display: flex;
