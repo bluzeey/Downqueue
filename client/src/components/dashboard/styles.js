@@ -2,28 +2,32 @@ import { makeStyles } from "@mui/styles"
 export default makeStyles({
    container:{
        display:'flex',
-       padding:'5em 0',
+       width:'100%',
        background:'lightgray',
-       justifyContent:'space-around'
+       justifyContent:'space-around',
+       height:'100vh',
    },
    instructions:{
        display:'flex',
        padding:'1em',
        flexDirection:'column',
-       marginLeft:'2em',
        alignSelf:'center',
        maxWidth:'300px',
        margin:'0 2em'
    },
    calenders:{
        display:'flex',
+       flexDirection:'column',
+       height:'80%',
+       alignSelf:'center',
+       justifyContent: 'space-between'
    },
    searchBar:{
        display:'flex',
        flexDirection:'column',
        alignSelf:'center',
-       marginRight:'2em',
        padding:'1em',
+       margin:'0 2em'
    },
    btn:{
         borderRadius: '4px',
