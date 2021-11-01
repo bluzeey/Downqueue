@@ -6,6 +6,7 @@ import { TextField,Typography,Button,InputLabel,Paper,Select,MenuItem,FormContro
 import useStyles from './components/form/styles'
 import { useHistory } from 'react-router';
 import * as ROUTES from './constants/routes'
+import { NavLink } from 'react-router-dom';
 
 const Profile = ({profileData,setProfileData,userUid}) => {
     const { user } = useAuthListener();
@@ -25,9 +26,6 @@ const Profile = ({profileData,setProfileData,userUid}) => {
              Bio:doc.data().Bio,
              Tag:doc.data().Tag,
              setProfile:doc.data().setProfile}))
-    if(profileData.setProfile){
-            history.push(ROUTES.DASHBOARD)
-        }
     } 
     getProfileData(setProfileData)  
        },[])
@@ -49,7 +47,7 @@ const Profile = ({profileData,setProfileData,userUid}) => {
     }
     return (
         <>
-        {!profileData.setProfile &&
+        {!profileData.setProfile ?
         <Paper className={classes.container}>
         <form className={classes.form} autoComplete="off" onSubmit={handleSubmit} noValidate method="POST">
          <Typography variant="h3" className={classes.title}>Set up your profile</Typography>
@@ -102,7 +100,11 @@ const Profile = ({profileData,setProfileData,userUid}) => {
                 Set Up
             </Button>
             </form>
-        </Paper>}
+        </Paper>:(
+            <NavLink className={classes.button} to={ROUTES.DASHBOARD}>
+                Go to Dashboard
+            </NavLink>
+        )}
         </>
     )
 }
