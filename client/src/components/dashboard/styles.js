@@ -31,10 +31,19 @@ export default makeStyles({
        alignSelf:'center',
        justifyContent: 'space-between',
        overflow:'scroll',
+       '&>*':{
+         margin: '.5em'
+        },
        '@media (max-width: 810px)' : {
            margin:'unset',
-           width:'85%'
-        }
+           width:'85%',
+           flexDirection:'column',
+           '&:first-child': {
+            marginBottom: '2em'
+            }
+        },
+
+        
    },
    searchBar:{
        display:'flex',
