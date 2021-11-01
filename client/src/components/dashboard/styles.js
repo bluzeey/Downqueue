@@ -38,12 +38,7 @@ export default makeStyles({
            margin:'unset',
            width:'85%',
            flexDirection:'column',
-           '&:first-child': {
-            marginBottom: '2em'
-            }
-        },
-
-        
+        }
    },
    searchBar:{
        display:'flex',
