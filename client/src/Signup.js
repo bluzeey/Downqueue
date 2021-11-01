@@ -28,8 +28,7 @@ export default function Signup(setUserUid) {
             // db.settings({timestampsinSnapshots:true});
             let d1 = new Date()
             let d2 = new Date(d1);
-            d2.setMinutes ( d1.getMinutes() + 30 );
-            console.log(d1.toISOString().slice(0,-5),d2.toISOString().slice(0,-5))
+            d2.setMinutes( d1.getMinutes() + 30 );
             const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).collection("events").doc('0').set({
                 start:`${d1.toISOString().slice(0,-5)}+05:30`,
                 end:`${d2.toISOString().slice(0,-5)}+05:30`,
@@ -44,7 +43,7 @@ export default function Signup(setUserUid) {
                 Tag:'',
                 emailAddress:emailAddress,
                 setProfile:false})
-             setTimeout(function(){history.push(ROUTES.PROFILE)},5000)
+             history.push(ROUTES.PROFILE)
             })
             .catch((error) => {
             setFirstName('');
