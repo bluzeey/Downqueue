@@ -26,9 +26,13 @@ export default function Signup(setUserUid) {
         .then((cred)=>{
             const db=firebase.firestore()
             // db.settings({timestampsinSnapshots:true});
+            let d1 = new Date()
+            let d2 = new Date(d1);
+            d2.setMinutes ( d1.getMinutes() + 30 );
+            console.log(d1.toISOString().slice(0,-5),d2.toISOString().slice(0,-5))
             const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).collection("events").doc('0').set({
-                start:'2021-10-20T08:00:00+05:30',
-                end:'2021-10-20T10:00:00+05:30',
+                start:`${d1.toISOString().slice(0,-5)}+05:30`,
+                end:`${d2.toISOString().slice(0,-5)}+05:30`,
                 title:'Your first Event',
                 id:'0'
             })
