@@ -24,8 +24,7 @@ const Profile = ({profileData,setProfileData}) => {
              country:doc.data().Country,
              emailAddress:doc.data().emailAddress,
              Bio:doc.data().Bio,
-             Tag:doc.data().Tag,
-             setProfile:doc.data().setProfile}))
+             Tag:doc.data().Tag}))
     } 
     getProfileData(setProfileData)  
        },[])
@@ -38,17 +37,16 @@ const Profile = ({profileData,setProfileData}) => {
             Country:profileData.country,
             Name: profileData.Fullname,
             Tag:profileData.Tag,
-            emailAddress:profileData.emailAddress,
-            setProfile:true
+            emailAddress:profileData.emailAddress
         })
-        localStorage.setItem('ProfileInfo',JSON.stringify({...profileData,setProfile:true}))
+        localStorage.setItem('ProfileInfo',JSON.stringify({...profileData}))
         }catch(error){
           console.log(error)
         }
     }
     return (
         <>
-        {!profileData.setProfile ?
+        {!localStorage.getItem('ProfileInfo') ?
         <Paper className={classes.container}>
         <form className={classes.form} autoComplete="off" onSubmit={handleSubmit} noValidate method="POST">
          <Typography variant="h3" className={classes.title}>Set up your profile</Typography>

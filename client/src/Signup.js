@@ -7,7 +7,7 @@ import * as ROUTES from './constants/routes'
 import { TextField,Grid,Typography,Button,FormControl,Card,Paper} from '@mui/material';
 import useStyles from './components/form/styles'
 
-export default function Signup(setUserUid) {
+export default function Signup() {
     const classes=useStyles()
     const history=useHistory()
     const { firebase } = useContext(FirebaseContext);
@@ -42,9 +42,8 @@ export default function Signup(setUserUid) {
                 Country:'',
                 Name: firstName,
                 Tag:'',
-                emailAddress:emailAddress,
-                setProfile:false})
-             history.push(ROUTES.PROFILE)
+                emailAddress:emailAddress})
+                setTimeout(function(){history.push(ROUTES.PROFILE)},3000)
             })
             .catch((error) => {
             setFirstName('');

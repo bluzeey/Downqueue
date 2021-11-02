@@ -24,7 +24,7 @@ const setToken=async()=>{
     cookies.set('token', token);
     cookies.set('userId', userId);
     const authToken = cookies.get("token");}} 
-setToken()
+
 const authToken = cookies.get("token");
 
 const client = StreamChat.getInstance(apiKey);
@@ -57,7 +57,7 @@ const Meet = ({profileData,setProfileData}) => {
             Tag:doc.data().Tag,
             setProfile:doc.data().setProfile})
             )
-     
+        setToken()
             },[])
     if(!authToken) return <Auth/>
     return (
