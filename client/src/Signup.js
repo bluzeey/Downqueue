@@ -29,6 +29,7 @@ export default function Signup(setUserUid) {
             let d1 = new Date()
             let d2 = new Date(d1);
             d2.setMinutes( d1.getMinutes() + 30 );
+            d2.setHours(d1.getHours()+1);
             const createUserEventDoc=db.collection("User-events").doc(cred.user.uid).collection("events").doc('0').set({
                 start:`${d1.toISOString().slice(0,-5)}+05:30`,
                 end:`${d2.toISOString().slice(0,-5)}+05:30`,

@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 import * as ROUTES from './constants/routes'
 import { NavLink } from 'react-router-dom';
 
-const Profile = ({profileData,setProfileData,userUid}) => {
+const Profile = ({profileData,setProfileData}) => {
     const { user } = useAuthListener();
     const{ firebase }=useContext(FirebaseContext)
     const history=useHistory()
@@ -41,6 +41,7 @@ const Profile = ({profileData,setProfileData,userUid}) => {
             emailAddress:profileData.emailAddress,
             setProfile:true
         })
+        localStorage.setItem('ProfileInfo',JSON.stringify({...profileData,setProfile:true}))
         }catch(error){
           console.log(error)
         }
@@ -101,9 +102,11 @@ const Profile = ({profileData,setProfileData,userUid}) => {
             </Button>
             </form>
         </Paper>:(
-            <NavLink className={classes.button} to={ROUTES.DASHBOARD}>
+            <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',margin:'0'}}>
+            <NavLink className={classes.button } to={ROUTES.DASHBOARD}>
                 Go to Dashboard
             </NavLink>
+            </div>
         )}
         </>
     )
