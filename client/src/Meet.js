@@ -19,9 +19,9 @@ const setToken=async()=>{
     const URL = 'https://downqueue.herokuapp.com/auth/validate';
     const { data: { token, userId} } = await axios.post(URL, {
           userId: user.uid});
-    console.log(token)
     cookies.set('token', token);
-    cookies.set('userId', userId);} 
+    cookies.set('userId', userId);
+} 
 
 
 
@@ -29,7 +29,7 @@ const client = StreamChat.getInstance(apiKey);
 
 
 
-const Meet = ({profileData,setProfileData}) => {
+const Meet = ({profileData}) => {
     const [createType, setCreateType] = useState('');
     const [isCreating, setIsCreating] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
@@ -45,16 +45,6 @@ const Meet = ({profileData,setProfileData}) => {
 }
 
     useEffect(()=>{
-        const db=firebase.firestore()
-        db.collection("Users-data").doc(user.uid).get().then(doc=>setProfileData({
-            Fullname:doc.data().Name,
-            city:doc.data().City,
-            country:doc.data().Country,
-            emailAddress:doc.data().emailAddress,
-            Bio:doc.data().Bio,
-            Tag:doc.data().Tag,
-            setProfile:doc.data().setProfile})
-            )
         setToken()
             },[])
     if(!authToken) return <Auth/>
