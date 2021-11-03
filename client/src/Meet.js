@@ -15,17 +15,15 @@ const cookies = new Cookies();
 
 const apiKey = process.env.REACT_APP_STREAM_API_KEY
 const setToken=async()=>{
-    const user=JSON.parse(window.localStorage.getItem('authUser'))
+    const user=await JSON.parse(window.localStorage.getItem('authUser'))
     const URL = 'https://downqueue.herokuapp.com/auth/validate';
-    if(user){
     const { data: { token, userId} } = await axios.post(URL, {
           userId: user.uid});
     console.log(token)
     cookies.set('token', token);
-    cookies.set('userId', userId);
-    const authToken = cookies.get("token");}} 
+    cookies.set('userId', userId);} 
 
-const authToken = cookies.get("token");
+
 
 const client = StreamChat.getInstance(apiKey);
 
@@ -37,7 +35,7 @@ const Meet = ({profileData,setProfileData}) => {
     const [isEditing, setIsEditing] = useState(false);
     const {user}=useAuthListener()
     const {firebase}=useContext(FirebaseContext)
-
+    const authToken = cookies.get("token");
     if(authToken,profileData) {
     client.connectUser({
         id: cookies.get('userId'),

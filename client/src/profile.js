@@ -102,7 +102,7 @@ const Profile = ({profileData,setProfileData}) => {
             </form>
         </Paper>:(
             <div style={{position:'absolute',top:'50%',left:'50%',transform:'translate(-50%,-50%)',margin:'0'}}>
-            <NavLink className={classes.button } to={ROUTES.DASHBOARD}>
+            <NavLink className={classes.button} to={ROUTES.DASHBOARD}>
                 Go to Dashboard
             </NavLink>
             </div>
