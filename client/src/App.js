@@ -13,7 +13,7 @@ require('dotenv').config()
 
 function App(){
   const [profileData, setProfileData] = useState({
-        Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:'',setProfile:false
+        Fullname:'',city:'',country:'',emailAddress:'',Bio:'',Tag:''
     })
   const [userUid,setUserUid]=useState()
   return <>
@@ -22,10 +22,10 @@ function App(){
               <Homepage/>
             </Route>
             <Route exact path={ROUTES.SIGN_IN}>
-              <Signin setUserUid={setUserUid}/>
+              <Signin setUserUid={setUserUid} setProfileData={setProfileData} />
             </Route>
             <Route exact path={ROUTES.SIGN_UP}>
-              <Signup setUserUid={setUserUid}/>
+              <Signup setUserUid={setUserUid} setProfileData={setProfileData} profileData={profileData}/>
             </Route>
             <Route path={ROUTES.DASHBOARD}>
               <Dashboard/>

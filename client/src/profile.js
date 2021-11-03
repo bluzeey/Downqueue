@@ -15,19 +15,19 @@ const Profile = ({profileData,setProfileData}) => {
     const isInvalid=profileData.Fullname===""
     const db=firebase.firestore();   
     const classes=useStyles()
-    useEffect(()=>{
-    const getProfileData=async(setProfileData)=>{
-    const user=JSON.parse(window.localStorage.getItem('authUser'))
-    await db.collection("Users-data").doc(user.uid).get().then(doc=>setProfileData({
-             Fullname:doc.data().Name,
-             city:doc.data().City,
-             country:doc.data().Country,
-             emailAddress:doc.data().emailAddress,
-             Bio:doc.data().Bio,
-             Tag:doc.data().Tag}))
-    } 
-    getProfileData(setProfileData)  
-       },[])
+    // useEffect(()=>{
+    // const getProfileData=async(setProfileData)=>{
+    // const user=await JSON.parse(window.localStorage.getItem('authUser'))
+    // await db.collection("Users-data").doc(user?.uid).get().then(doc=>setProfileData({
+    //          Fullname:doc.data().Name,
+    //          city:doc.data().City,
+    //          country:doc.data().Country,
+    //          emailAddress:doc.data().emailAddress,
+    //          Bio:doc.data().Bio,
+    //          Tag:doc.data().Tag}))
+    // } 
+    // getProfileData(setProfileData)  
+    //    },[])
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try{
@@ -40,6 +40,7 @@ const Profile = ({profileData,setProfileData}) => {
             emailAddress:profileData.emailAddress
         })
         localStorage.setItem('ProfileInfo',JSON.stringify({...profileData}))
+        history.push(ROUTES.DASHBOARD)
         }catch(error){
           console.log(error)
         }
