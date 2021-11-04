@@ -21,7 +21,7 @@ const setToken=async()=>{
           userId: user.uid,fullName:ProfileInfo.FullName});
     cookies.set('token', token);
     cookies.set('userId', userId);
-    cookies.set('name',fullName)
+    cookies.set('name',ProfileInfo.FullName)
 } 
 
 
@@ -39,8 +39,8 @@ const Meet = ({profileData}) => {
     if(authToken,profileData) {
     client.connectUser({
         id: cookies.get('userId'),
-        name: profileData.Fullname,
-        fullName: profileData.Fullname
+        name: cookies.get('name'),
+        fullName: cookies.get('name')
     }, authToken)
 }
 
