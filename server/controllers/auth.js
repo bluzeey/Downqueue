@@ -56,11 +56,11 @@ const login = async (req, res) => {
 };
 const validate=async(req,res)=>{
     try{
-        const {userId}= req.body
+        const {fullName,userId}= req.body
         const serverClient = connect(api_key, api_secret, app_id);
         const client = StreamChat.getInstance(api_key, api_secret);
         const token = serverClient.createUserToken(userId)
-        res.status(200).json({ token, userId})
+        res.status(200).json({ token, userId, fullName})
     }catch(error){
         console.log(error);
         res.status(500).json({ message: error });
