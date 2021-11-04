@@ -30,13 +30,13 @@ const client = StreamChat.getInstance(apiKey);
 
 
 
-const Meet = ({profileData}) => {
+const Meet = () => {
     const [createType, setCreateType] = useState('');
     const [isCreating, setIsCreating] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const {firebase}=useContext(FirebaseContext)
     const authToken = cookies.get("token");
-    if(authToken,profileData) {
+    if(authToken) {
     client.connectUser({
         id: cookies.get('userId'),
         name: cookies.get('name'),
@@ -47,7 +47,7 @@ const Meet = ({profileData}) => {
     useEffect(()=>{
         setToken()
             },[])
-    if(!authToken) return <Auth/>
+    if(!authToken) return 'Error, Please refresh.'
     return (
         <>
         <div className="app__wrapper">
