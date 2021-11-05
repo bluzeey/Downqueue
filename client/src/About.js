@@ -9,25 +9,30 @@ const About = () => {
     const classes=useStyles()
     const [error, setError] = useState('');
     const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
-    const isInvalid = password === '' | emailAddress === '';
+    const [message, setMessage] = useState('');
+    const isInvalid = message === '' | emailAddress === '';
     const handleSignin = (event) => {
     event.preventDefault();}
     return (
         <>
             <TopNav/>
-            <div style={{background:'lightgray'}}>
-                <Paper>
-                    <Typography variant="h3">About the Company</Typography>
+            <div style={{
+                padding:'2em',
+                backgroundImage:`url(assets/images/about.jpg)`,
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                display:'flex'
+            }}>
+                <Paper className={classes.container}>
                     <Typography variant="body1">
                     Downqueue is the new age social chatting application
                     which can be used to organize and connect to your friends.
                     </Typography>
                     <Typography variant="body1">
-                     We believe in free and open communication which can be more productive. 
+                     We believe in free and open communication which can be more productive.
+                     To mix and mash all the elements with your calendar, so that you can get to the point.
                     </Typography>
-                </Paper>
-                <Paper>
                     <Typography variant="h3">About the Founder</Typography>
                     <Typography variant="body1">
                     Hi , I am Sahil. I am creating a
@@ -45,22 +50,19 @@ const About = () => {
                     />
                     <TextField
                         className={classes.inputField}
-                        type="password"
-                        value={password}
+                        type="text"
+                        value={message}
                         autoComplete="off"
-                        label="Password"
-                        onChange={({ target }) => setPassword(target.value)} 
+                        label="Message"
+                        onChange={({ target }) => setMessage(target.value)} 
                     />
                     <Button className={classes.button} disabled={isInvalid} type="submit">
-                        Sign In
+                        Send Message
                     </Button>
                     
                     <Typography gutterBottom variant="subtitle1" className={classes.text}>
                         New to Downqueue? <Link to="/signup" className={classes.link}> Sign up now.</Link>
                     </Typography>    
-                    <Typography variant="subtitle2">
-                        This page is protected by Google reCAPTCHA.
-                    </Typography>
                 </form>
             </Paper>
             </div>
