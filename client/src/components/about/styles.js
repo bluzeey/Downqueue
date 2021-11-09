@@ -29,6 +29,10 @@ export default makeStyles({
     font:{
         fontFamily:'Source Sans Pro'
     },
+    fontHeading:{
+        fontFamily:'Source Sans Pro',
+        fontWeight:'700'
+    },
     secondary:{
         display: 'flex',
         flexDirection: 'column',
@@ -69,6 +73,14 @@ export default makeStyles({
         height: '50px',
         lineHeight: '50px',
         margin: '10px',
+        
+    },
+    textArea:{
+        borderRadius: '4px',
+        height: '150px',
+        lineHeight: '50px',
+        margin: '10px',
+        paddingBottom:'20px'
     },
     form:{
         display: 'flex',
