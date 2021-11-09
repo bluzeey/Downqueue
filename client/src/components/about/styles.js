@@ -1,6 +1,16 @@
 import { makeStyles } from "@mui/styles"
 export default makeStyles({
-     main:{
+    background:{
+        padding:'2em',
+        backgroundImage:`url(assets/images/about.jpg)`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        display:'flex',
+        justifyContent:'space-around',
+        alignItems:'center'
+    },
+    main:{
         background: 'rgb(255,255,255)',
         borderRadius: '5px',
         boxSizing: 'border-box',
@@ -10,9 +20,13 @@ export default makeStyles({
         padding: '60px 68px 40px',
         boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
     },
+    font:{
+        fontFamily:'Source Sans Pro'
+    },
     secondary:{
         display: 'flex',
         flexDirection: 'column',
+        justifyContent:'center',
         background: 'rgb(255,255,255)',
         borderRadius: '5px',
         boxSizing: 'border-box',
@@ -22,7 +36,7 @@ export default makeStyles({
         padding: '60px 68px 40px',
         boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
     },
-        title:{
+    title:{
         color: 'rgba(1, 93, 231, 0.7)',
         fontSize: '2.5rem',
         fontWeight: 'light',
@@ -47,5 +61,31 @@ export default makeStyles({
         lineHeight: '50px',
         margin: '10px',
     },
-
+    form:{
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '450px',
+        width: '100%',
+    },
+    button:{
+        borderRadius: '4px',
+        fontSize: '16px',
+        fontWeight: 'bold',
+        margin: '15px',
+        border: '0',
+        color: 'white',
+        cursor: 'pointer',
+        background:'rgba(1, 93, 231, 1)',
+        '&:disabled': {
+            background:'rgba(1, 93, 231, 0.5)',
+            color: 'white'
+        } 
+    },
+    link:{
+        textDecoration:'none',
+        color:'rgba(1, 93, 231, 1)'
+    },
+    select:{
+        margin: '5px',
+    }
 })

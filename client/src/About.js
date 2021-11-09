@@ -16,28 +16,19 @@ const About = () => {
     return (
         <>
             <TopNav/>
-            <div style={{
-                padding:'2em',
-                backgroundImage:`url(assets/images/about.jpg)`,
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                display:'flex',
-                justifyContent:'space-around',
-                alignItems:'center'
-            }}>
+            <div className={classes.background}>
                 <Paper className={classes.main}>
-                    <Typography variant="h3">About Us</Typography>
-                    <Typography variant="body1">
+                    <Typography className={`${classes.font}`}  variant="h3">About Us</Typography>
+                    <Typography className={classes.font} variant="body1">
                     Downqueue is the new age social chatting application
                     which can be used to organize and connect to your friends.
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography className={classes.font} variant="body1">
                      We believe in free and open communication which can be more productive.
                      To mix and mash all the elements with your calendar, so that you can get to the point.
                     </Typography>
-                    <Typography variant="h3">About the Founder</Typography>
-                    <Typography variant="body1">
+                    <Typography className={classes.font} variant="h3">About the Founder</Typography>
+                    <Typography className={classes.font} variant="body1">
                     Hi , I am Sahil. I created this application to improve communication and scheduling without the ever-increasing advertisements on our social media applications.
                     </Typography>
                 </Paper>
