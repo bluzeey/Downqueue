@@ -18,11 +18,12 @@ const About = () => {
             <TopNav/>
             <div className={classes.background}>
                 <Paper className={classes.main}>
-                    <Typography className={`${classes.font}`}  variant="h3">About Us</Typography>
+                    <Typography className={classes.font} variant="h3">About Us</Typography>
                     <Typography className={classes.font} variant="body1">
                     Downqueue is the new age social chatting application
                     which can be used to organize and connect to your friends.
                     </Typography>
+                    <Typography className={`${classes.font}`}  variant="h3">Our Beliefs</Typography>
                     <Typography className={classes.font} variant="body1">
                      We believe in free and open communication which can be more productive.
                      To mix and mash all the elements with your calendar, so that you can get to the point.

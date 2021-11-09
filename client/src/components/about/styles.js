@@ -8,7 +8,10 @@ export default makeStyles({
         backgroundRepeat: 'no-repeat',
         display:'flex',
         justifyContent:'space-around',
-        alignItems:'center'
+        alignItems:'center',
+        '@media (max-width: 840px)': {
+           flexDirection:'column',
+         },
     },
     main:{
         background: 'rgb(255,255,255)',
@@ -19,6 +22,9 @@ export default makeStyles({
         margin:'100px 12.5px 100px 25px',
         padding: '60px 68px 40px',
         boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+        '@media (max-width: 840px)': {
+           marginBottom:'25px'
+         },
     },
     font:{
         fontFamily:'Source Sans Pro'
@@ -35,6 +41,9 @@ export default makeStyles({
         maxWidth: '500px',
         padding: '60px 68px 40px',
         boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+        '@media (max-width: 840px)': {
+           marginTop:'25px'
+         },
     },
     title:{
         color: 'rgba(1, 93, 231, 0.7)',
