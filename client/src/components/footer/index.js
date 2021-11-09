@@ -9,7 +9,7 @@ export default function Footer(){
               <div className="row">
                 <div className="About">
                   <h6>About</h6>
-                  <p className="text-justify">Downqueue is a social network which improves scheduling and meeting with different individuals</p>
+                  <p className="text-justify">Downqueue is a social network which improves scheduling and meeting with friends , family and coworkers.</p>
                 </div>
 
                 <div>

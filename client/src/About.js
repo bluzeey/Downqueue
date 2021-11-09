@@ -1,7 +1,7 @@
 import TopNav from "./components/topNav"
 import Footer from "./components/footer"
 import { TextField,Typography,Button,Paper} from '@mui/material';
-import useStyles from './components/form/styles'
+import useStyles from './components/about/styles'
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -22,9 +22,12 @@ const About = () => {
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
-                display:'flex'
+                display:'flex',
+                justifyContent:'space-around',
+                alignItems:'center'
             }}>
-                <Paper className={classes.container}>
+                <Paper className={classes.main}>
+                    <Typography variant="h3">About Us</Typography>
                     <Typography variant="body1">
                     Downqueue is the new age social chatting application
                     which can be used to organize and connect to your friends.
@@ -35,10 +38,10 @@ const About = () => {
                     </Typography>
                     <Typography variant="h3">About the Founder</Typography>
                     <Typography variant="body1">
-                    Hi , I am Sahil. I am creating a
+                    Hi , I am Sahil. I created this application to improve communication and scheduling without the ever-increasing advertisements on our social media applications.
                     </Typography>
                 </Paper>
-                <Paper className={classes.container}>
+                <Paper className={classes.secondary}>
                 <Typography variant="h3" className={classes.title}>Contact Me</Typography>
                 {error && <Typography variant="body2" className={classes.error}>{error}</Typography>}
                 <form className={classes.form} onSubmit={handleSignin} method="POST">
