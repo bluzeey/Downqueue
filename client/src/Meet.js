@@ -5,7 +5,7 @@ import { FirebaseContext } from './context/firebase';
 import Cookies from 'universal-cookie';
 import axios from 'axios'
 
-import { ChannelListContainer, ChannelContainer, Auth} from './components';
+import { ChannelListContainer, ChannelContainer} from './components';
 
 import 'stream-chat-react/dist/css/index.css';
 import './App.css';

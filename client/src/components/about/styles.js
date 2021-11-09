@@ -19,11 +19,11 @@ export default makeStyles({
         boxSizing: 'border-box',
         width: '100%',
         maxWidth: '900px',
-        margin:'100px 12.5px 100px 25px',
+        margin:'100px 25px 100px 12.5px',
         padding: '60px 68px 40px',
         boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
         '@media (max-width: 840px)': {
-           marginBottom:'25px'
+           margin:'25px auto'
          },
     },
     font:{
@@ -40,13 +40,13 @@ export default makeStyles({
         background: 'rgb(255,255,255)',
         borderRadius: '5px',
         boxSizing: 'border-box',
-        margin:'100px 25px 100px 12.5px',
+        margin:'100px 12.5px 100px 25px',
         width: '100%',
         maxWidth: '500px',
         padding: '60px 68px 40px',
         boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
         '@media (max-width: 840px)': {
-           marginTop:'25px'
+           margin:'25px auto'
          },
     },
     title:{
