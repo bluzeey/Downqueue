@@ -8,7 +8,7 @@ React
 <hr/>
 Backend:
 Firebase
-
+<hr/>
 You can watch its demo by clicking the image!
 
 [![Watch the video](https://github.com/bluzeey/Downqueue/blob/main/client/public/assets/images/hero-image.jpg)](https://www.youtube.com/watch?v=3qJYhfWBQ7c)
