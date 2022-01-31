@@ -4,10 +4,10 @@ It is an open source application which can sync up activites with other users. I
 If you're interested in the same with me ! You can with connect with me at Twitter or LinkedIn at homepage !
 <hr/>
 Frontend: 
-React 
+React , FullCalendarAPI
 <hr/>
 Backend:
-Firebase
+Firebase, Stream Chat API
 <hr/>
 You can watch its demo by clicking the image!
 
