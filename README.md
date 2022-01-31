@@ -7,4 +7,4 @@ React
 Backend:
 Firebase
 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=3qJYhfWBQ7c)
+[![Watch the video](https://github.com/bluzeey/Downqueue/blob/main/client/public/assets/images/hero-image.jpg)](https://www.youtube.com/watch?v=3qJYhfWBQ7c)
